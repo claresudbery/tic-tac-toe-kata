@@ -1,12 +1,8 @@
 <form action="/tictactoe" method="post">
-  <input class="row1 col1 tictac-cell" type="text" name="row1_col1_in" value="<%= @cells[0][0] %>">
-  <input class="row1 col2 tictac-cell" type="text" name="row1_col2_in" value="<%= @cells[0][1] %>">
-  <input class="row1 col3 tictac-cell" type="text" name="row1_col3_in" value="<%= @cells[0][2] %>">
-  <input class="row2 col1 tictac-cell" type="text" name="row2_col1_in" value="<%= @cells[1][0] %>">
-  <input class="row2 col2 tictac-cell" type="text" name="row2_col2_in" value="<%= @cells[1][1] %>">
-  <input class="row2 col3 tictac-cell" type="text" name="row2_col3_in" value="<%= @cells[1][2] %>">
-  <input class="row3 col1 tictac-cell" type="text" name="row3_col1_in" value="<%= @cells[2][0] %>">
-  <input class="row3 col2 tictac-cell" type="text" name="row3_col2_in" value="<%= @cells[2][1] %>">
-  <input class="row3 col3 tictac-cell" type="text" name="row3_col3_in" value="<%= @cells[2][2] %>">
+    <% for row in 0..2 
+        for col in 0..2  %>
+            <input class="row<%= row+1 %> col<%= col+1 %> tictac-cell" type="text" name="row<%= row+1 %>_col<%= col+1 %>_in" value="<%= @cells[row][col] %>">
+        <% end
+    end %>
   <input type="submit" class="row4 col2">
 </form>
