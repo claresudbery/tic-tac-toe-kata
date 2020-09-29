@@ -13,7 +13,7 @@ RSpec.describe 'The HelloWorld App' do
       MyApp
     end
   
-    context "get /tictactoe" do  
+    context "display empty grid" do  
       it "starts with an empty 3x3 tic-tac-toe grid" do
         # Act
         get '/tictactoe'
@@ -28,7 +28,7 @@ RSpec.describe 'The HelloWorld App' do
       end
     end
   
-    context "post /tictactoe and /reset" do
+    context "update based on user input" do
       # Arrange
       grid_cells_with_css = {
         :row0_col0_in => {:css => 'input.row0.col0', :input => "A"},
