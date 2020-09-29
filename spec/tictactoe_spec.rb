@@ -32,13 +32,13 @@ RSpec.describe 'The HelloWorld App' do
     context "post /tictactoe" do
       grid_cells = {
         :row1_col1_in => {:css => 'input.row1.col1', :input => "A"},
-        :row2_col1_in => {:css => 'input.row2.col1', :input => "B"},
-        :row3_col1_in => {:css => 'input.row3.col1', :input => "C"},
         :row1_col2_in => {:css => 'input.row1.col2', :input => "D"},
-        :row2_col2_in => {:css => 'input.row2.col2', :input => "E"},
-        :row3_col2_in => {:css => 'input.row3.col2', :input => "F"},
         :row1_col3_in => {:css => 'input.row1.col3', :input => "G"},
+        :row2_col1_in => {:css => 'input.row2.col1', :input => "B"},
+        :row2_col2_in => {:css => 'input.row2.col2', :input => "E"},
         :row2_col3_in => {:css => 'input.row2.col3', :input => "H"},
+        :row3_col1_in => {:css => 'input.row3.col1', :input => "C"},
+        :row3_col2_in => {:css => 'input.row3.col2', :input => "F"},
         :row3_col3_in => {:css => 'input.row3.col3', :input => "I"}
       }
 
