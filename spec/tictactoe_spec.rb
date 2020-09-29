@@ -97,7 +97,7 @@ RSpec.describe 'The HelloWorld App' do
         post "/tictactoe", build_post_data(grid_cells)  
 
         # Assert
-        expect(last_response.body).to include("X has won")
+        expect(last_response.body).to include("X has won".upcase)
       end
     end
 

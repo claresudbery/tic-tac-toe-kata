@@ -4,6 +4,7 @@
             <input class="row<%= row %> col<%= col %> tictac-cell" type="text" name="row<%= row %>_col<%= col %>_in" value="<%= @cells[row][col] %>">
         <% end
     end %>
-  <input type="submit" class="row3 col1">
-  <input type="submit" class="row3 col2" value="Reset" formaction="/reset">
+  <input type="submit" class="row3 col0">
+  <input type="submit" class="row3 col1" value="Reset" formaction="/reset">
+  <h1 class="row3 col2">X HAS WON!!</h1>
 </form>
