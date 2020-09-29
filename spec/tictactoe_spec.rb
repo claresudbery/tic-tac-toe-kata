@@ -17,15 +17,11 @@ RSpec.describe 'The HelloWorld App' do
       it "starts with an empty 3x3 tic-tac-toe grid" do
         get '/tictactoe'
         expect(last_response).to be_ok
-        expect(last_response.body).to have_tag('input', :with => { :class => 'row0 col0' })
-        expect(last_response.body).to have_tag('input', :with => { :class => 'row0 col1' })
-        expect(last_response.body).to have_tag('input', :with => { :class => 'row0 col2' })
-        expect(last_response.body).to have_tag('input', :with => { :class => 'row1 col0' })
-        expect(last_response.body).to have_tag('input', :with => { :class => 'row1 col1' })
-        expect(last_response.body).to have_tag('input', :with => { :class => 'row1 col2' })
-        expect(last_response.body).to have_tag('input', :with => { :class => 'row2 col0' })
-        expect(last_response.body).to have_tag('input', :with => { :class => 'row2 col1' })
-        expect(last_response.body).to have_tag('input', :with => { :class => 'row2 col2' })
+        for row in 0..2 
+            for col in 0..2 
+                expect(last_response.body).to have_tag('input', :with => { :class => "row#{row} col#{col}" })
+            end
+        end
       end
     end
   
