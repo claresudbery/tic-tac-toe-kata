@@ -27,7 +27,7 @@ class MyApp < Sinatra::Base
 
         for row in 0..2 
             for col in 0..2 
-                session[:cell_values][row][col] = params["row#{row+1}_col#{col+1}_in"]
+                session[:cell_values][row][col] = params["row#{row}_col#{col}_in"]
             end
         end
     end

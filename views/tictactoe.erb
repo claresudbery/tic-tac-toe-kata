@@ -1,8 +1,8 @@
 <form action="/tictactoe" method="post">
     <% for row in 0..2 
         for col in 0..2  %>
-            <input class="row<%= row+1 %> col<%= col+1 %> tictac-cell" type="text" name="row<%= row+1 %>_col<%= col+1 %>_in" value="<%= @cells[row][col] %>">
+            <input class="row<%= row %> col<%= col %> tictac-cell" type="text" name="row<%= row %>_col<%= col %>_in" value="<%= @cells[row][col] %>">
         <% end
     end %>
-  <input type="submit" class="row4 col2">
+  <input type="submit" class="row3 col1">
 </form>
