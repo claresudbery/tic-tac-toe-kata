@@ -44,9 +44,9 @@ RSpec.describe 'The HelloWorld App' do
 
       grid_cells.each do |control, values|
         it "remembers when user makes a mark in a grid cell" do
-          post "/tictactoe", control => "X" 
+          post "/tictactoe", control => values[:input] 
           expect(last_response).to be_ok
-          expect(last_response.body).to have_tag(values[:css], :value => values[:input])
+          expect(last_response.body).to have_tag(values[:css], :with => { :value => values[:input] })
         end
       end
     end
