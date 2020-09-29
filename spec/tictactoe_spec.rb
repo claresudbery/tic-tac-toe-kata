@@ -25,7 +25,7 @@ RSpec.describe 'The HelloWorld App' do
       end
     end
   
-    context "post /tictactoe" do
+    context "post /tictactoe and /reset" do
       grid_cells_with_css = {
         :row0_col0_in => {:css => 'input.row0.col0', :input => "A"},
         :row0_col1_in => {:css => 'input.row0.col1', :input => "B"},
@@ -50,13 +50,28 @@ RSpec.describe 'The HelloWorld App' do
       grid_cells = Hash[*grid_cells_with_css.map{ |k,v| [k, v[:input]] }.flatten]
 
       it "remembers data from previous sessions" do   
-        clear_cookies     
         post "/tictactoe", grid_cells 
         
         get '/tictactoe'
         get '/tictactoe'
         grid_cells_with_css.each do |control, values|
           expect(last_response.body).to have_tag(values[:css], :with => { :value => values[:input] })
+        end
+      end
+
+      it "empties all cells on reset" do  
+        # Arrange
+        post "/tictactoe", grid_cells  
+        grid_cells_with_css.each do |control, values|
+          expect(last_response.body).to have_tag(values[:css], :with => { :value => values[:input] })
+        end  
+
+        # Act
+        post "/reset"
+
+        # Assert
+        grid_cells_with_css.each do |control, values|
+          expect(last_response.body).to have_tag(values[:css], :with => { :value => "" })
         end
       end
     end
