@@ -28,7 +28,7 @@ RSpec.describe 'The HelloWorld App' do
       end
     end
   
-    context "update based on user input" do
+    context "update display based on user input" do
       # Arrange
       grid_cells_with_css = {
         :row0_col0_in => {:css => 'input.row0.col0', :input => "A"},
