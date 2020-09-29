@@ -1,1 +1,47 @@
-<html><body><%= yield %></body></html>
+<html>
+    <head>
+        <style>
+            body {
+                background-color: lightblue;
+            }
+            .tictac-cell {
+                width: 150px;
+                height: 150px;
+                padding: 2px 18px;
+                box-sizing: border-box;
+                border: 2px solid #ccc;
+                border-radius: 4px;
+                font-size: 140px;
+                resize: none;
+                overflow: hidden;
+            }
+            .row1 {
+                position: absolute;
+                top: 30px;
+            }
+            .row2 {
+                position: absolute;
+                top: 210px;
+            }
+            .row3 {
+                position: absolute;
+                top: 390px;
+            }
+            .col1 {
+                position: absolute;
+                left: 30px;
+            }
+            .col2 {
+                position: absolute;
+                left: 210px;
+            }
+            .col3 {
+                position: absolute;
+                left: 390px;
+            }
+        </style>
+    </head>
+    <body>
+        <%= yield %>
+    </body>
+</html>
