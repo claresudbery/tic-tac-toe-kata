@@ -40,15 +40,11 @@ class MyApp < Sinatra::Base
         @cells = Array.new(3){ Array.new(3) { "" } }
 
         unless session[:cell_values] == nil 
-            @cells[0][0] = session[:cell_values][0][0]
-            @cells[0][1] = session[:cell_values][0][1]
-            @cells[0][2] = session[:cell_values][0][2]
-            @cells[1][0] = session[:cell_values][1][0]
-            @cells[1][1] = session[:cell_values][1][1]
-            @cells[1][2] = session[:cell_values][1][2]
-            @cells[2][0] = session[:cell_values][2][0]
-            @cells[2][1] = session[:cell_values][2][1]
-            @cells[2][2] = session[:cell_values][2][2]
+            for row in 0..2 
+                for col in 0..2 
+                    @cells[row][col] = session[:cell_values][row][col]
+                end
+            end
         end
     end
 end
