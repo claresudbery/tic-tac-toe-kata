@@ -89,31 +89,39 @@ RSpec.describe 'The HelloWorld App' do
     context "game logic" do
       it "tells user when somebody has won the game" do  
         # Arrange
-        grid_cell_names = [:row0_col0_in, \
-                           :row0_col1_in, \
-                           :row0_col2_in, \
-                           :row1_col0_in, \
-                           :row1_col1_in, \
-                           :row1_col2_in, \
-                           :row2_col0_in, \
-                           :row2_col1_in, \
-                           :row2_col2_in]
-        grid_cells_with_names = Hash.new
-        grid_cells_one_game =  [["X", "", ""], \
-                                ["X", "", ""], \
-                                ["X", "", ""]]
-        for row in 0..2 
-          for col in 0..2 
-            index = (row*3) + col
-            grid_cells_with_names[grid_cell_names[index]] = grid_cells_one_game[row][col]
-          end
-        end
+        grid_cells =  [["X", "", ""], \
+                       ["X", "", ""], \
+                       ["X", "", ""]]
 
         # Act 
-        post "/tictactoe", grid_cells_with_names  
+        post "/tictactoe", build_post_data(grid_cells)  
 
         # Assert
         expect(last_response.body).to include("X has won")
       end
+    end
+
+    private
+
+    def build_post_data (grid_cells) 
+      grid_cell_names = [:row0_col0_in, \
+                         :row0_col1_in, \
+                         :row0_col2_in, \
+                         :row1_col0_in, \
+                         :row1_col1_in, \
+                         :row1_col2_in, \
+                         :row2_col0_in, \
+                         :row2_col1_in, \
+                         :row2_col2_in]
+      grid_cells_with_names = Hash.new
+      
+      for row in 0..2 
+        for col in 0..2 
+          index = (row*3) + col
+          grid_cells_with_names[grid_cell_names[index]] = grid_cells[row][col]
+        end
+      end
+
+      grid_cells_with_names
     end
 end
