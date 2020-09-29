@@ -30,7 +30,7 @@ RSpec.describe 'The HelloWorld App' do
     end
   
     context "post /tictactoe" do
-      grid_cells = {
+      grid_cells_with_css = {
         :row1_col1_in => {:css => 'input.row1.col1', :input => "A"},
         :row2_col1_in => {:css => 'input.row2.col1', :input => "B"},
         :row3_col1_in => {:css => 'input.row3.col1', :input => "C"},
@@ -42,10 +42,22 @@ RSpec.describe 'The HelloWorld App' do
         :row3_col3_in => {:css => 'input.row3.col3', :input => "I"}
       }
 
-      grid_cells.each do |control, values|
+      grid_cells_with_css.each do |control, values|
         it "remembers when user makes a mark in a grid cell" do
           post "/tictactoe", control => values[:input] 
           expect(last_response).to be_ok
+          expect(last_response.body).to have_tag(values[:css], :with => { :value => values[:input] })
+        end
+      end
+
+      grid_cells = Hash[*grid_cells_with_css.map{ |k,v| [k, v[:input]] }.flatten]
+
+      it "remembers data from previous sessions" do        
+        post "/tictactoe", grid_cells 
+        
+        get '/tictactoe'
+        get '/tictactoe'
+        grid_cells_with_css.each do |control, values|
           expect(last_response.body).to have_tag(values[:css], :with => { :value => values[:input] })
         end
       end
