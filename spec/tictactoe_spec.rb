@@ -31,22 +31,22 @@ RSpec.describe 'The HelloWorld App' do
   
     context "post /tictactoe" do
       grid_cells = {
-        :row1_col1_in => 'input.row1.col1',
-        :row2_col1_in => 'input.row2.col1',
-        :row3_col1_in => 'input.row3.col1',
-        :row1_col2_in => 'input.row1.col2',
-        :row2_col2_in => 'input.row2.col2',
-        :row3_col2_in => 'input.row3.col2',
-        :row1_col3_in => 'input.row1.col3',
-        :row2_col3_in => 'input.row2.col3',
-        :row3_col3_in => 'input.row3.col3'
+        :row1_col1_in => {:css => 'input.row1.col1', :input => "A"},
+        :row2_col1_in => {:css => 'input.row2.col1', :input => "B"},
+        :row3_col1_in => {:css => 'input.row3.col1', :input => "C"},
+        :row1_col2_in => {:css => 'input.row1.col2', :input => "D"},
+        :row2_col2_in => {:css => 'input.row2.col2', :input => "E"},
+        :row3_col2_in => {:css => 'input.row3.col2', :input => "F"},
+        :row1_col3_in => {:css => 'input.row1.col3', :input => "G"},
+        :row2_col3_in => {:css => 'input.row2.col3', :input => "H"},
+        :row3_col3_in => {:css => 'input.row3.col3', :input => "I"}
       }
 
-      grid_cells.each do |input, css|
-        it "remembers when user plays O or X" do
-          post "/tictactoe", input => "X" 
+      grid_cells.each do |control, values|
+        it "remembers when user makes a mark in a grid cell" do
+          post "/tictactoe", control => "X" 
           expect(last_response).to be_ok
-          expect(last_response.body).to have_tag(css, :value => 'X')
+          expect(last_response.body).to have_tag(values[:css], :value => values[:input])
         end
       end
     end
