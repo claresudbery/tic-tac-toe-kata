@@ -38,8 +38,7 @@ class MyApp < Sinatra::Base
 
     def update_template_vars_from_session
         @cells = Array.new(3){ Array.new(3) { "" } }
-        # @cells.each do |row|
-        #     row.each do |cell|
+
         @cells[0][0] = session[:cell_values][0][0]
         @cells[0][1] = session[:cell_values][0][1]
         @cells[0][2] = session[:cell_values][0][2]
@@ -49,6 +48,5 @@ class MyApp < Sinatra::Base
         @cells[2][0] = session[:cell_values][2][0]
         @cells[2][1] = session[:cell_values][2][1]
         @cells[2][2] = session[:cell_values][2][2]
-        # end
     end
 end
