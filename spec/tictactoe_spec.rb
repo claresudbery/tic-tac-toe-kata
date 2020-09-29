@@ -49,18 +49,5 @@ RSpec.describe 'The HelloWorld App' do
           expect(last_response.body).to have_tag(values[:css], :with => { :value => values[:input] })
         end
       end
-
-      it "remembers data from previous sessions" do        
-        #env "rack.session", { cell_values: nil }
-        grid_cells.each do |control, values|
-          post "/tictactoe", control => values[:input] 
-        end
-        #p last_request.env['rack.session']
-
-        get '/tictactoe'
-        grid_cells.each do |control, values|
-          expect(last_response.body).to have_tag(values[:css], :with => { :value => values[:input] })
-        end
-      end
     end
 end
