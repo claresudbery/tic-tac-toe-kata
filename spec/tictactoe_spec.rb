@@ -13,7 +13,7 @@ RSpec.describe 'The HelloWorld App' do
       MyApp
     end
   
-    context "display empty grid" do  
+    context "simple display" do  
       it "starts with an empty 3x3 tic-tac-toe grid" do
         # Act
         get '/tictactoe'
@@ -28,7 +28,7 @@ RSpec.describe 'The HelloWorld App' do
       end
     end
   
-    context "update display based on user input" do
+    context "updated display after user input" do
       # Arrange
       grid_cells_with_css = {
         :row0_col0_in => {:css => 'input.row0.col0', :input => "A"},
@@ -83,6 +83,37 @@ RSpec.describe 'The HelloWorld App' do
         grid_cells_with_css.each do |control, values|
           expect(last_response.body).to have_tag(values[:css], :with => { :value => "" })
         end
+      end
+    end
+  
+    context "game logic" do
+      it "tells user when somebody has won the game" do  
+        # Arrange
+        grid_cell_names = [:row0_col0_in, \
+                           :row0_col1_in, \
+                           :row0_col2_in, \
+                           :row1_col0_in, \
+                           :row1_col1_in, \
+                           :row1_col2_in, \
+                           :row2_col0_in, \
+                           :row2_col1_in, \
+                           :row2_col2_in]
+        grid_cells_with_names = Hash.new
+        grid_cells_one_game =  [["X", "", ""], \
+                                ["X", "", ""], \
+                                ["X", "", ""]]
+        for row in 0..2 
+          for col in 0..2 
+            index = (row*3) + col
+            grid_cells_with_names[grid_cell_names[index]] = grid_cells_one_game[row][col]
+          end
+        end
+
+        # Act 
+        post "/tictactoe", grid_cells_with_names  
+
+        # Assert
+        expect(last_response.body).to include("X has won")
       end
     end
 end
