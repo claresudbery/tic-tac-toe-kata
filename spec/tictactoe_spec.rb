@@ -55,7 +55,7 @@ RSpec.describe 'The HelloWorld App' do
 
       grid_cells = Hash[*grid_cells_with_css.map{ |k,v| [k, v[:input]] }.flatten]
 
-      it "remembers data from previous sessions" do   
+      it "remembers data from previous posts even after multiple GET requests" do   
         # Arrange
         post "/tictactoe", grid_cells         
         get '/tictactoe'
@@ -98,6 +98,21 @@ RSpec.describe 'The HelloWorld App' do
 
         # Assert
         expect(last_response.body).to include("X has won".upcase)
+      end
+    end
+  
+    context "game logic" do
+      it "doesn't say somebody has won the game if they haven't" do  
+        # Arrange
+        grid_cells =  [["X", "O", ""], \
+                       ["X", "O", ""], \
+                       ["",  "",  ""]]
+
+        # Act 
+        post "/tictactoe", build_post_data(grid_cells)  
+
+        # Assert
+        expect(last_response.body).to_not include("X has won".upcase)
       end
     end
 

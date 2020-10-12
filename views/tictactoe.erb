@@ -6,5 +6,7 @@
     end %>
   <input type="submit" class="row3 col0">
   <input type="submit" class="row3 col1" value="Reset" formaction="/reset">
-  <h1 class="row3 col2">X HAS WON!!</h1>
+  <% if @winner %>
+    <h1 class="row3 col2"><%= @winner %> HAS WON!!</h1>
+  <% end %>
 </form>

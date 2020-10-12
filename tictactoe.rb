@@ -1,8 +1,8 @@
 require "sinatra/base"
 require "erb"
+require_relative './lib/tictactoe_logic'
 
 class MyApp < Sinatra::Base
-
     enable :sessions
 
     get '/tictactoe' do
@@ -26,6 +26,10 @@ class MyApp < Sinatra::Base
 
     private
 
+    def update_winner
+        @winner = TicTacToeLogic.new.get_winner(@cells)
+    end
+
     def update_session_vars_from_inputs
         if session[:cell_values] == nil
             session[:cell_values] = Array.new(3){ Array.new(3) { "" } }
@@ -41,6 +45,10 @@ class MyApp < Sinatra::Base
     def update_template_vars_from_session
         @cells = Array.new(3){ Array.new(3) { "" } }
 
+        if session[:cell_values] == nil
+            session[:cell_values] = Array.new(3){ Array.new(3) { "" } }
+        end
+        
         unless session[:cell_values] == nil 
             for row in 0..2 
                 for col in 0..2 
@@ -48,6 +56,8 @@ class MyApp < Sinatra::Base
                 end
             end
         end
+
+        update_winner
     end
 
     def clear_session_vars
