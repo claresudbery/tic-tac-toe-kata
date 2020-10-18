@@ -10,6 +10,8 @@ More useful Ruby links [here](https://clare-wiki.herokuapp.com/pages/coding/lang
 
 ## Getting Started
 
+Remember to run `bundle install` if there is a `Gemfile` in the project.
+
 To start the app / spin up the server, run the following on the command line: `rackup -p 4567`. Then go to http://localhost:4567/tictactoe in your browser.
 
 Alternatively you can still just use: `ruby tictactoe.rb`
