@@ -87,7 +87,7 @@ RSpec.describe 'The HelloWorld App' do
     end
   
     context "game logic" do
-      it "tells user when somebody has won the game" do  
+      xit "tells user when somebody has won the game" do  
         # Arrange
         grid_cells =  [["X", "", ""], \
                        ["X", "", ""], \
