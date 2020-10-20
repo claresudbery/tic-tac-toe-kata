@@ -43,6 +43,7 @@ PLATFORMS
 
 DEPENDENCIES
   nokogiri
+  rack
   rack-test
   rspec-html-matchers
   sinatra
