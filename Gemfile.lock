@@ -3,6 +3,8 @@ GEM
   specs:
     diff-lcs (1.4.4)
     mini_portile2 (2.4.0)
+    nokogiri (1.10.10)
+      mini_portile2 (~> 2.4.0)
     nokogiri (1.10.10-x64-mingw32)
       mini_portile2 (~> 2.4.0)
     rspec (3.9.0)
@@ -24,8 +26,10 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
+  nokogiri
   rspec-html-matchers
 
 BUNDLED WITH
