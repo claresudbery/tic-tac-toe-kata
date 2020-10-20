@@ -5,10 +5,13 @@ GEM
     mini_portile2 (2.4.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
+    nio4r (2.5.4)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     nokogiri (1.10.10-x64-mingw32)
       mini_portile2 (~> 2.4.0)
+    puma (5.0.2)
+      nio4r (~> 2.0)
     rack (2.2.3)
     rack-protection (2.1.0)
       rack
@@ -43,6 +46,7 @@ PLATFORMS
 
 DEPENDENCIES
   nokogiri
+  puma
   rack
   rack-test
   rspec-html-matchers
