@@ -7,6 +7,9 @@ GEM
       mini_portile2 (~> 2.4.0)
     nokogiri (1.10.10-x64-mingw32)
       mini_portile2 (~> 2.4.0)
+    rack (2.2.3)
+    rack-test (1.1.0)
+      rack (>= 1.0, < 3)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
@@ -30,6 +33,7 @@ PLATFORMS
 
 DEPENDENCIES
   nokogiri
+  rack-test
   rspec-html-matchers
 
 BUNDLED WITH
