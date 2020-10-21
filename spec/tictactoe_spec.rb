@@ -6,7 +6,7 @@ require_relative '../tictactoe'
 require 'rspec'
 require 'rack/test'
 
-RSpec.describe 'The HelloWorld App' do
+RSpec.describe 'The tic-tac-toe App' do
     include Rack::Test::Methods
   
     def app
