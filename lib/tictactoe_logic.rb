@@ -1,4 +1,8 @@
 class TicTacToeLogic
+    def choose_move(grid, next_player)
+        [2,2]
+    end
+
     def get_winner(rows)
         columns = rows.transpose
         diagonals = [[rows[0][0], rows[1][1], rows[2][2]],

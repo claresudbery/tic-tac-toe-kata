@@ -53,11 +53,11 @@ RSpec.describe 'The tic-tac-toe App' do
         end
       end
 
-      grid_cells = Hash[*grid_cells_with_css.map{ |k,v| [k, v[:input]] }.flatten]
+      hash_of_inputs_for_all_cells = Hash[*grid_cells_with_css.map{ |k,v| [k, v[:input]] }.flatten]
 
       it "remembers data from previous posts even after multiple GET requests" do   
         # Arrange
-        post "/tictactoe", grid_cells         
+        post "/tictactoe", hash_of_inputs_for_all_cells         
         get '/tictactoe'
         
         # Act
@@ -71,7 +71,7 @@ RSpec.describe 'The tic-tac-toe App' do
 
       it "empties all cells on reset" do  
         # Arrange
-        post "/tictactoe", grid_cells  
+        post "/tictactoe", hash_of_inputs_for_all_cells  
         grid_cells_with_css.each do |control, values|
           expect(last_response.body).to have_tag(values[:css], :with => { :value => values[:input] })
         end  
@@ -99,9 +99,7 @@ RSpec.describe 'The tic-tac-toe App' do
         # Assert
         expect(last_response.body).to include("X has won".upcase)
       end
-    end
-  
-    context "game logic" do
+      
       it "doesn't say somebody has won the game if they haven't" do  
         # Arrange
         grid_cells =  [["X", "O", ""],
