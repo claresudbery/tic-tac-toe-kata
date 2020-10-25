@@ -10,6 +10,10 @@ class TicTacToeLogic
             i = i + 1
         end
 
+        if winner.nil?
+            winner = check_left_diagonal_for_winner(grid_cells)
+        end
+
         winner
     end
 
@@ -20,6 +24,14 @@ class TicTacToeLogic
                 && (grid_row[0] == grid_row[1]) \
                 && (grid_row[1] == grid_row[2])
             winner = grid_row[0]
+        end 
+    end
+
+    def check_left_diagonal_for_winner(grid_cells)
+        if !grid_cells[0][0].nil? && !grid_cells[0][0].empty? \
+                && (grid_cells[0][0] == grid_cells[1][1]) \
+                && (grid_cells[1][1] == grid_cells[2][2])
+            winner = grid_cells[0][0]
         end 
     end
 end
