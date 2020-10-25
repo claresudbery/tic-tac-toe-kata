@@ -45,11 +45,20 @@ class MyApp < Sinatra::Base
             session[:cell_values] = Array.new(3){ Array.new(3) { "" } }
         end
 
+        for row in 0..2 
+            for col in 0..2 
+                session[:cell_values][row][col] = params["row#{row}_col#{col}_in"]
+            end
+        end
+
+        decide_ai_aymbol
+    end
+
+    def decide_ai_aymbol
         num_inputs = 0
         for row in 0..2 
             for col in 0..2 
                 input = params["row#{row}_col#{col}_in"]
-                session[:cell_values][row][col] = input
                 num_inputs = (input.nil? || input.empty?) ? num_inputs : num_inputs + 1
                 first_input = (first_input.nil? || first_input.empty?) ? input : first_input
             end
