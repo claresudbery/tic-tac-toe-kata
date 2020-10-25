@@ -7,12 +7,14 @@ class MyApp < Sinatra::Base
 
     get '/tictactoe' do
         update_template_vars_from_session
+        update_winner
         erb :tictactoe
     end
 
     post "/tictactoe" do
         update_session_vars_from_inputs
         update_template_vars_from_session
+        update_winner
         erb :tictactoe
     end
 
@@ -55,9 +57,7 @@ class MyApp < Sinatra::Base
                     @cells[row][col] = session[:cell_values][row][col]
                 end
             end
-        end
-
-        update_winner
+        end        
     end
 
     def clear_session_vars
