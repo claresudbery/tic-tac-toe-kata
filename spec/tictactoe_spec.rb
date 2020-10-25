@@ -145,7 +145,7 @@ RSpec.describe 'The tic-tac-toe App' do
                       ["X", "X", ""]]
 
         # Act 
-        post "/tictactoe", build_post_data(grid_cells)  
+        post "/tictactoe", build_post_data(grid_cells, "O")  
 
         # Assert
         expect(last_response.body).to have_tag('input.row2.col2', :with => { :value => 'O' })
@@ -154,7 +154,7 @@ RSpec.describe 'The tic-tac-toe App' do
 
     private
 
-    def build_post_data (grid_cells) 
+    def build_post_data (grid_cells, ai_symbol = "O") 
       grid_cell_names = [:row0_col0_in, \
                          :row0_col1_in, \
                          :row0_col2_in, \
@@ -172,6 +172,8 @@ RSpec.describe 'The tic-tac-toe App' do
           grid_cells_with_names[grid_cell_names[index]] = grid_cells[row][col]
         end
       end
+
+      grid_cells_with_names[:ai_symbol] = ai_symbol
 
       grid_cells_with_names
     end
