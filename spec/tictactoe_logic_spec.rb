@@ -24,18 +24,28 @@ RSpec.describe 'The tic-tac-toe App' do
                 expect(result).to eq(player)
             end
         end
-        
-        it "can detect when a player has won with a vertical row" do
-            # Arrange
-            winning_grid = [["X", "", ""],
-                            ["X", "", ""],
-                            ["X", "", ""]]
 
-            # Act
-            result = TicTacToeLogic.new.get_winner(winning_grid)
+        vertical_winning_rows = [
+            ["O",  [["O", "", ""],
+                    ["O", "", ""],
+                    ["O", "", ""]]],
+            ["O",  [["", "O", ""],
+                    ["", "O", ""],
+                    ["", "O", ""]]],
+            ["O",  [["", "", "O"],
+                    ["", "", "O"],
+                    ["", "", "O"]]]
+        ]
 
-            # Assert
-            expect(result).to eq("X")
+        # Arrange                
+        vertical_winning_rows.each do |player, grid_cells|
+            it "can detect when #{player} has won with a vertical row, like this: #{grid_cells}" do
+                # Act
+                result = TicTacToeLogic.new.get_winner(grid_cells)
+
+                # Assert
+                expect(result).to eq(player)
+            end
         end
     end
 end
