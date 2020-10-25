@@ -1,25 +1,17 @@
 class TicTacToeLogic
     def get_winner(grid_cells)
-        if !grid_cells[0][0].nil? && !grid_cells[0][0].empty? \
-                && (grid_cells[0][0] == grid_cells[0][1]) \
-                && (grid_cells[0][1] == grid_cells[0][2])
-            grid_cells[0][0]
-        elsif !grid_cells[1][0].nil? && !grid_cells[1][0].empty? \
-                && (grid_cells[1][0] == grid_cells[1][1]) \
-                && (grid_cells[1][1] == grid_cells[1][2])
-            grid_cells[1][0]
-        end  
+        winner = nil
+        i = 0
 
-        # puts "*******************************************************"
-        # puts "grid_cells[0][0]: " + grid_cells[0][0]
-        # puts "grid_cells[0][1]: " + grid_cells[0][1]
-        # puts "grid_cells[0][2]: " + grid_cells[0][2]
-        # puts "grid_cells[1][0]: " + grid_cells[1][0]
-        # puts "grid_cells[1][1]: " + grid_cells[1][1]
-        # puts "grid_cells[1][2]: " + grid_cells[1][2]
-        # puts "grid_cells[2][0]: " + grid_cells[2][0]
-        # puts "grid_cells[2][1]: " + grid_cells[2][1]
-        # puts "grid_cells[2][2]: " + grid_cells[2][2]
-        # puts "*******************************************************"
+        while winner == nil && i < 3
+            if !grid_cells[i][0].nil? && !grid_cells[i][0].empty? \
+                    && (grid_cells[i][0] == grid_cells[i][1]) \
+                    && (grid_cells[i][1] == grid_cells[i][2])
+                winner = grid_cells[i][0]
+            end  
+            i = i + 1
+        end
+
+        winner
     end
 end
