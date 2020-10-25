@@ -47,18 +47,25 @@ RSpec.describe 'The tic-tac-toe App' do
                 expect(result).to eq(player)
             end
         end
-        
-        it "can detect when a player has won with a left-diagonal row" do
-            # Arrange
-            grid_cells = [["O", "",  ""],
-                          ["",  "O", ""],
-                          ["",  "",  "O"]]
 
-            # Act
-            result = TicTacToeLogic.new.get_winner(grid_cells)
+        diagonal_winning_rows = [
+            ["O",  [["O", "",  ""],
+                    ["",  "O", ""],
+                    ["",  "",  "O"]]],
+            ["X",  [["",  "",  "X"],
+                    ["",  "X", ""],
+                    ["X", "",  ""]]]
+        ]
 
-            # Assert
-            expect(result).to eq("O")
+        # Arrange                
+        diagonal_winning_rows.each do |player, grid_cells|
+            it "can detect when #{player} has won with a diagonal row, like this: #{grid_cells}" do
+                # Act
+                result = TicTacToeLogic.new.get_winner(grid_cells)
+
+                # Assert
+                expect(result).to eq(player)
+            end
         end
     end
 end
