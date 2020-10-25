@@ -87,7 +87,7 @@ RSpec.describe 'The tic-tac-toe App' do
     end
   
     context "game logic" do
-      xit "tells user when somebody has won the game" do  
+      it "tells user when somebody has won the game" do  
         # Arrange
         grid_cells =  [["X", "", ""], \
                        ["X", "", ""], \
@@ -102,7 +102,7 @@ RSpec.describe 'The tic-tac-toe App' do
     end
   
     context "game logic" do
-      it "doesn't say somebody has won the game if they haven't" do  
+      xit "doesn't say somebody has won the game if they haven't" do  
         # Arrange
         grid_cells =  [["X", "O", ""], \
                        ["X", "O", ""], \
