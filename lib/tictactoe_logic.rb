@@ -1,11 +1,11 @@
 class TicTacToeLogic
-    def get_winner(grid_cells)
+    def get_winner(rows)
         winner = nil
         i = 0
-        transposed_grid = grid_cells.transpose
-        diagonals = [[grid_cells[0][0], grid_cells[1][1], grid_cells[2][2]],
-                     [grid_cells[0][2], grid_cells[1][1], grid_cells[2][0]]]
-        all_lines = grid_cells + transposed_grid + diagonals
+        columns = rows.transpose
+        diagonals = [[rows[0][0], rows[1][1], rows[2][2]],
+                     [rows[0][2], rows[1][1], rows[2][0]]]
+        all_lines = rows + columns + diagonals
 
         while winner == nil && i < all_lines.length 
             winner = find_winner_in_line(all_lines[i])
