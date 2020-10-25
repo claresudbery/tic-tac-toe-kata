@@ -48,9 +48,10 @@ class MyApp < Sinatra::Base
         num_inputs = 0
         for row in 0..2 
             for col in 0..2 
-                session[:cell_values][row][col] = params["row#{row}_col#{col}_in"]
-                num_inputs = (params["row#{row}_col#{col}_in"].nil? || params["row#{row}_col#{col}_in"].empty?) ? num_inputs : num_inputs + 1
-                first_input = (first_input.nil? || first_input.empty?) ? params["row#{row}_col#{col}_in"] : first_input
+                input = params["row#{row}_col#{col}_in"]
+                session[:cell_values][row][col] = input
+                num_inputs = (input.nil? || input.empty?) ? num_inputs : num_inputs + 1
+                first_input = (first_input.nil? || first_input.empty?) ? input : first_input
             end
         end
         set_ai_symbol(num_inputs, first_input)
