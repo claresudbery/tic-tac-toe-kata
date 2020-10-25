@@ -3,18 +3,13 @@ class TicTacToeLogic
         winner = nil
         i = 0
         transposed_grid = grid_cells.transpose
+        diagonals = [[grid_cells[0][0], grid_cells[1][1], grid_cells[2][2]],
+                     [grid_cells[0][2], grid_cells[1][1], grid_cells[2][0]]]
+        all_lines = grid_cells + transposed_grid + diagonals
 
-        while winner == nil && i < 3 
-            winner = find_winner_in_line(grid_cells[i])
-            winner = winner.nil? ? find_winner_in_line(transposed_grid[i]) : winner
+        while winner == nil && i < all_lines.length 
+            winner = find_winner_in_line(all_lines[i])
             i = i + 1
-        end
-
-        if winner.nil?
-            winner = find_winner_in_line([grid_cells[0][0], grid_cells[1][1], grid_cells[2][2]])
-            winner = winner.nil? \
-                ? find_winner_in_line([grid_cells[0][2], grid_cells[1][1], grid_cells[2][0]]) \
-                : winner
         end
 
         winner
