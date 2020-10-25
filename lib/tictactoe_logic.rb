@@ -22,11 +22,11 @@ class TicTacToeLogic
 
     private 
 
-    def find_winner_in_line(grid_row)
-        if !grid_row[0].nil? && !grid_row[0].empty? \
-                && (grid_row[0] == grid_row[1]) \
-                && (grid_row[1] == grid_row[2])
-            winner = grid_row[0]
+    def find_winner_in_line(grid_line)
+        if !grid_line[0].nil? && !grid_line[0].empty? \
+                && (grid_line[0] == grid_line[1]) \
+                && (grid_line[1] == grid_line[2])
+            winner = grid_line[0]
         end 
     end
 end
