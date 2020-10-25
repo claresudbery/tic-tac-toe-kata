@@ -113,6 +113,34 @@ RSpec.describe 'The tic-tac-toe App' do
         expect(last_response.body).to_not include("X has won".upcase)
       end
     end
+  
+    context "artifical intelliigence" do
+      it "will choose a move after the user has played." do  
+        # Arrange
+        grid_cells = [["", "",  ""],
+                      ["", "X", ""],
+                      ["", "",  ""]]
+
+        # Act 
+        post "/tictactoe", build_post_data(grid_cells)  
+
+        # Assert
+        expect(last_response.body).to have_tag('input.row2.col2', :with => { :value => 'O' })
+      end
+
+      it "will play the winning move if there is one" do  
+        # Arrange
+        grid_cells = [["O", "O", "X"],
+                      ["O", "O", "X"],
+                      ["X", "X", ""]]
+
+        # Act 
+        post "/tictactoe", build_post_data(grid_cells)  
+
+        # Assert
+        expect(last_response.body).to have_tag('input.row2.col2', :with => { :value => 'O' })
+      end
+    end
 
     private
 

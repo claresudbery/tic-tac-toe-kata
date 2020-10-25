@@ -14,6 +14,7 @@ class MyApp < Sinatra::Base
     post "/tictactoe" do
         update_session_vars_from_inputs
         update_template_vars_from_session
+        choose_ai_move
         update_winner
         erb :tictactoe
     end
@@ -27,6 +28,13 @@ class MyApp < Sinatra::Base
     run! if app_file == $0
 
     private
+
+    def choose_ai_move
+        ai_move = TicTacToeLogic.new.choose_move(@cells, "O")
+        if @cells[ai_move[0]][ai_move[1]].nil? || @cells[ai_move[0]][ai_move[1]].empty?
+            @cells[ai_move[0]][ai_move[1]] = "O"
+        end
+    end
 
     def update_winner
         @winner = TicTacToeLogic.new.get_winner(@cells)
