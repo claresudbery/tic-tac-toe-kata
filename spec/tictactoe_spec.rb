@@ -115,17 +115,27 @@ RSpec.describe 'The tic-tac-toe App' do
     end
   
     context "artifical intelliigence" do
-      it "will choose a move after the user has played." do  
-        # Arrange
-        grid_cells = [["", "",  ""],
-                      ["", "X", ""],
-                      ["", "",  ""]]
+      grids_with_ai_symbol = [
+          ["X",  [["", "",  ""],
+                  ["", "O", ""],
+                  ["", "",  ""]]],
+          ["O",  [["", "",  ""],
+                  ["", "X", ""],
+                  ["", "",  ""]]],
+          ["O",  [["", "",  ""],
+                  ["", "Z", ""],
+                  ["", "",  ""]]]
+      ]
 
-        # Act 
-        post "/tictactoe", build_post_data(grid_cells)  
-
-        # Assert
-        expect(last_response.body).to have_tag('input.row2.col2', :with => { :value => 'O' })
+      # Arrange                
+      grids_with_ai_symbol.each do |ai_symbol, grid_cells|
+        it "will choose a move, using the symbol #{ai_symbol}, after the user has played their first move like this: #{grid_cells}." do
+          # Act 
+          post "/tictactoe", build_post_data(grid_cells)  
+  
+          # Assert
+          expect(last_response.body).to have_tag('input.row2.col2', :with => { :value => ai_symbol })
+        end
       end
 
       it "will play the winning move if there is one" do  
