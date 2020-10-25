@@ -67,5 +67,38 @@ RSpec.describe 'The tic-tac-toe App' do
                 expect(result).to eq(player)
             end
         end
+
+        no_winner_grids = [
+            [["O", "O", "X"],
+             ["O", "O", "X"],
+             ["X", "X", ""]],
+
+            [["O", "O", "X"],
+             ["X", "X", "O"],
+             ["",  "",  ""]],
+
+            [["O", "", "X"],
+             ["X", "", "O"],
+             ["O", "", "O"]],
+
+            [["",  "X", "X"],
+             ["X", "",  "O"],
+             ["O", "X", ""]],
+
+            [["", "", ""],
+             ["", "", ""],
+             ["", "", ""]]
+        ]
+
+        # Arrange                
+        no_winner_grids.each do |grid_cells|
+            it "will not declare a winner for a non-winning grid, like this: #{grid_cells}" do
+                # Act
+                result = TicTacToeLogic.new.get_winner(grid_cells)
+
+                # Assert
+                expect(result).to eq(nil)
+            end
+        end
     end
 end
