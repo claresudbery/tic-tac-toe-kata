@@ -116,13 +116,13 @@ RSpec.describe 'The tic-tac-toe App' do
   
     context "artifical intelliigence" do
       grids_with_ai_symbol = [
-          ["X",  [["", "",  ""],
-                  ["", "O", ""],
-                  ["", "",  ""]]],
-          ["O",  [["", "",  ""],
+          [MyApp::DEFAULT_AI_SYMBOL,  [["", "",  ""],
                   ["", "X", ""],
                   ["", "",  ""]]],
-          ["O",  [["", "",  ""],
+          [MyApp::BACKUP_AI_SYMBOL,  [["", "",  ""],
+                  ["", MyApp::DEFAULT_AI_SYMBOL, ""],
+                  ["", "",  ""]]],
+          [MyApp::DEFAULT_AI_SYMBOL,  [["", "",  ""],
                   ["", "Z", ""],
                   ["", "",  ""]]]
       ]
@@ -145,7 +145,7 @@ RSpec.describe 'The tic-tac-toe App' do
                       ["X", "X", ""]]
 
         # Act 
-        post "/tictactoe", build_post_data(grid_cells, "O")  
+        post "/tictactoe", build_post_data(grid_cells, MyApp::DEFAULT_AI_SYMBOL)  
 
         # Assert
         expect(last_response.body).to have_tag('input.row2.col2', :with => { :value => 'O' })
@@ -154,7 +154,7 @@ RSpec.describe 'The tic-tac-toe App' do
 
     private
 
-    def build_post_data (grid_cells, ai_symbol = "O") 
+    def build_post_data (grid_cells, ai_symbol = MyApp::DEFAULT_AI_SYMBOL) 
       grid_cell_names = [:row0_col0_in, \
                          :row0_col1_in, \
                          :row0_col2_in, \

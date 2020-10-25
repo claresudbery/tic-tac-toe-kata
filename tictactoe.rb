@@ -3,6 +3,9 @@ require "erb"
 require_relative './lib/tictactoe_logic'
 
 class MyApp < Sinatra::Base
+    DEFAULT_AI_SYMBOL = "O"
+    BACKUP_AI_SYMBOL = "X"
+
     enable :sessions
 
     get '/tictactoe' do
@@ -72,7 +75,7 @@ class MyApp < Sinatra::Base
 
     def set_ai_symbol(num_inputs, first_input)
         if num_inputs == 1
-            session[:ai_symbol] = (first_input == "O" ? "X" : "O")
+            session[:ai_symbol] = (first_input == DEFAULT_AI_SYMBOL ? BACKUP_AI_SYMBOL : DEFAULT_AI_SYMBOL)
         else
             session[:ai_symbol] = params["ai_symbol"]
         end        
