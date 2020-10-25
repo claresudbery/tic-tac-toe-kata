@@ -5,8 +5,8 @@ class TicTacToeLogic
         transposed_grid = grid_cells.transpose
 
         while winner == nil && i < 3 
-            winner = find_horizontal_winner(grid_cells[i])
-            winner = winner.nil? ? find_horizontal_winner(transposed_grid[i]) : winner
+            winner = find_winner_in_line(grid_cells[i])
+            winner = winner.nil? ? find_winner_in_line(transposed_grid[i]) : winner
             i = i + 1
         end
 
@@ -15,7 +15,7 @@ class TicTacToeLogic
 
     private 
 
-    def find_horizontal_winner(grid_row)
+    def find_winner_in_line(grid_row)
         if !grid_row[0].nil? && !grid_row[0].empty? \
                 && (grid_row[0] == grid_row[1]) \
                 && (grid_row[1] == grid_row[2])
