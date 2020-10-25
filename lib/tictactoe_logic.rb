@@ -13,7 +13,7 @@ class TicTacToeLogic
         if winner.nil?
             winner = find_winner_in_line([grid_cells[0][0], grid_cells[1][1], grid_cells[2][2]])
             winner = winner.nil? \
-                ? find_winner_in_line([grid_cells[0][0], grid_cells[1][1], grid_cells[2][2]]) \
+                ? find_winner_in_line([grid_cells[0][2], grid_cells[1][1], grid_cells[2][0]]) \
                 : winner
         end
 
