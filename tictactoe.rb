@@ -40,8 +40,8 @@ class MyApp < Sinatra::Base
     def choose_ai_move
         begin
             ai_move = Intelligence.new.choose_move(@cells, session[:ai_symbol])
-            if @cells[ai_move[0]][ai_move[1]].nil? || @cells[ai_move[0]][ai_move[1]].empty?
-                @cells[ai_move[0]][ai_move[1]] = session[:ai_symbol]
+            if @cells[ai_move[1]][ai_move[0]].nil? || @cells[ai_move[1]][ai_move[0]].empty?
+                @cells[ai_move[1]][ai_move[0]] = session[:ai_symbol]
             end
         rescue FullGridError => e
             # Do nothing. This block just prevents us from attempting to play a move in a full grid.
