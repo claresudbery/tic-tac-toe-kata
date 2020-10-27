@@ -46,4 +46,44 @@ RSpec.describe 'The Grid class' do
             expect{Grid::empty_spaces(grid)}.to raise_error(FullGridError)
         end
     end
+
+    context "checking if grid is full" do 
+        it "will say grid is full when it is" do
+            # Arrange                
+            grid = [["X", "X", "X"],
+                    ["X", "Z", "X"],
+                    ["X", "X", "X"]] 
+
+            # Act
+            result = Grid::is_full(grid)
+
+            # Assert
+            expect(result).to eq(true)
+        end
+
+        # Arrange                
+        non_full_grids = [
+            [["", "", ""],
+             ["", "", ""],
+             ["", "", ""]],
+            
+            [["X", "",  ""],
+             ["",  "Z", ""],
+             ["",  "O", ""]],
+            
+            [["X", "O", "X"],
+             ["X", "X", "O"],
+             ["O", "O", ""]],
+        ]
+
+        non_full_grids.each do |grid_cells|
+            it "will not say grid is full if it isn't" do
+                # Act
+                result = Grid::is_full(grid_cells)
+    
+                # Assert
+                expect(result).to eq(false)
+            end
+        end        
+    end
 end
