@@ -39,7 +39,7 @@ class MyApp < Sinatra::Base
 
     def choose_ai_move
         begin
-            ai_move = Intelligence.new.choose_move(@cells, session[:ai_symbol])
+            ai_move = Intelligence.new.choose_move(@cells, session[:ai_symbol], session[:human_symbol])
             Grid::play_move(@cells, ai_move, session[:ai_symbol])
         rescue FullGridError => e
             # Do nothing. This block just prevents us from attempting to play a move in a full grid.
@@ -79,6 +79,7 @@ class MyApp < Sinatra::Base
     def set_ai_symbol(num_inputs, first_input)
         if num_inputs == 1
             session[:ai_symbol] = (first_input == DEFAULT_AI_SYMBOL ? BACKUP_AI_SYMBOL : DEFAULT_AI_SYMBOL)
+            session[:human_symbol] = first_input
         end      
     end
 

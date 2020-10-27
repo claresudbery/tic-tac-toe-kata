@@ -177,6 +177,23 @@ RSpec.describe 'The tic-tac-toe App' do
         # Assert
         expect(last_response.body).to have_tag('input.row2.col2', :with => { :value => MyApp::DEFAULT_AI_SYMBOL })
       end
+
+      it "will prevent the human from winning when the human uses the default AI symbol." do  
+        # Arrange
+        first_opponent_move = [[MyApp::DEFAULT_AI_SYMBOL, "", ""],
+                               ["",  "", ""],
+                               ["",  "", ""]]
+        post "/tictactoe", build_post_data(first_opponent_move)  
+        human_is_about_to_win = [[MyApp::DEFAULT_AI_SYMBOL, MyApp::BACKUP_AI_SYMBOL, ""],
+                                 [MyApp::BACKUP_AI_SYMBOL, MyApp::DEFAULT_AI_SYMBOL, ""],
+                                 ["",  "",  ""]]
+
+        # Act 
+        post "/tictactoe", build_post_data(human_is_about_to_win)  
+
+        # Assert
+        expect(last_response.body).to have_tag('input.row2.col2', :with => { :value => MyApp::BACKUP_AI_SYMBOL })
+      end
     end
 
     private
