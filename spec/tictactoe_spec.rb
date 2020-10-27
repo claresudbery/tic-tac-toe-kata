@@ -124,7 +124,7 @@ RSpec.describe 'The tic-tac-toe App' do
       # Arrange     
       grids_with_ai_symbol = [
           [MyApp::DEFAULT_AI_SYMBOL,  [["", "",  ""],
-                  ["", MyApp::BACKUP_AI_SYMBOL, ""],
+                  ["", MyApp::DEFAULT_OPPONENT_SYMBOL, ""],
                   ["", "",  ""]]],
           [MyApp::BACKUP_AI_SYMBOL,  [["", "",  ""],
                   ["", MyApp::DEFAULT_AI_SYMBOL, ""],

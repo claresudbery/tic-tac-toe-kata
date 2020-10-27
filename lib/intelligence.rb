@@ -1,7 +1,7 @@
 require_relative './utils'
 
 class Intelligence
-    def choose_move(grid, next_player)
+    def choose_move(grid, next_player, opponent = MyApp::DEFAULT_OPPONENT_SYMBOL)
         empty_spaces = Grid::empty_spaces(grid)
         chosen_move = empty_spaces[0]
 

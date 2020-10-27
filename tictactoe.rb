@@ -6,7 +6,8 @@ require_relative './lib/utils'
 
 class MyApp < Sinatra::Base
     DEFAULT_AI_SYMBOL = "X"
-    BACKUP_AI_SYMBOL = "O"
+    DEFAULT_OPPONENT_SYMBOL = "O"
+    BACKUP_AI_SYMBOL = DEFAULT_OPPONENT_SYMBOL
 
     enable :sessions
 

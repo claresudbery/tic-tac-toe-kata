@@ -73,9 +73,9 @@ RSpec.describe 'The Intelligence class' do
         }
 
         grids_where_other_player_could_win.each do |space_coords, grid_cells|
-            it "will prevent #{MyApp::BACKUP_AI_SYMBOL} from winning in this grid: #{grid_cells}" do
+            it "will prevent #{MyApp::DEFAULT_OPPONENT_SYMBOL} from winning in this grid: #{grid_cells}" do
                 # Act
-                result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL)
+                result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL, MyApp:DEFAULT_OPPONENT_SYMBOL)
 
                 # Assert
                 expect(result).to eq(space_coords)
