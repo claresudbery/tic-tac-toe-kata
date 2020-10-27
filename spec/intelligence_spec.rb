@@ -88,11 +88,31 @@ RSpec.describe 'The Intelligence class' do
         grids_with_a_choice_between_win_or_draw = {
             [1,1] => [["X", "O", "X"], # see diagram F
                       ["",  "",  "O"],
-                      ["",  "",  ""]]
+                      ["",  "",  ""]],
+            [1,1] => [["O", "", ""], # see diagram H
+                      ["",  "", ""],
+                      ["",  "", ""]]
         }
 
         grids_with_a_choice_between_win_or_draw.each do |space_coords, grid_cells|
             it "will choose the first winning move (instead of draw) in this grid: #{grid_cells}" do
+                # Act
+                result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
+
+                # Assert
+                expect(result).to eq(space_coords)
+            end
+        end        
+
+        # Arrange                
+        grids_with_a_choice_between_draw_or_lose = {
+            [2,2] => [["O", "X", "O"], # see diagram D
+                      ["X", "O", ""],
+                      ["X", "O", ""]]
+        }
+
+        grids_with_a_choice_between_win_or_draw.each do |space_coords, grid_cells|
+            it "will choose the first move that leads to a draw (instead of losing) in this grid: #{grid_cells}" do
                 # Act
                 result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
 
