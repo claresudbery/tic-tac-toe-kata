@@ -2,6 +2,16 @@ require_relative './full_grid_error'
 
 class Grid
     def self.empty_spaces(grid)
+        empty_cells = empty_spaces_no_exception(grid)
+        
+        if empty_cells.empty?
+            raise FullGridError.new
+        else
+            empty_cells            
+        end
+    end
+
+    def self.empty_spaces_no_exception(grid)
         empty_cells = []
 
         grid.each_with_index do |column, column_index|
@@ -11,12 +21,8 @@ class Grid
                 end
             end
         end
-        
-        if empty_cells.empty?
-            raise FullGridError.new
-        else
-            empty_cells            
-        end
+
+        empty_cells
     end
 
     def self.copy(grid)
@@ -27,5 +33,7 @@ class Grid
         if grid[coord[1]][coord[0]].nil? || grid[coord[1]][coord[0]].empty?
             grid[coord[1]][coord[0]] = player
         end
+        puts "******************************** coord, player, played grid: #{coord}, #{player}"
+        p grid
     end
 end
