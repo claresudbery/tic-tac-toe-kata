@@ -7,8 +7,8 @@ RSpec.describe 'The Intelligence class' do
         # Arrange                
         grids_with_only_one_space = {
             [0,0] => [["", "O", "X"],["O", "X", "O"],["O", "X", "O"]],
-            [1,0] => [["X", "O", "X"],["", "X", "O"],["O", "X", "O"]],
-            [0,2] => [["X", "O", ""],["O", "X", "O"],["O", "X", "O"]],
+            [0,1] => [["X", "O", "X"],["", "X", "O"],["O", "X", "O"]],
+            [2,0] => [["X", "O", ""],["O", "X", "O"],["O", "X", "O"]],
             [2,2] => [["X", "O", "X"],["O", "X", "O"],["O", "X", ""]]
         }
 
@@ -22,11 +22,28 @@ RSpec.describe 'The Intelligence class' do
             end
         end
 
+        it "will not alter the grid when asked to choose a move" do
+            # Arrange                
+            original_grid = [["Z", "Z", "Z"],
+                             ["Z", "Z", "Z"],
+                             ["Z", "Z", ""]]             
+            control_grid = Marshal.load(Marshal.dump(original_grid))
+
+            # Act
+            result = Intelligence.new.choose_move(original_grid, MyApp::DEFAULT_AI_SYMBOL)
+
+            # Assert
+            expect(original_grid).to eq(control_grid)
+        end
+
         # Arrange                
         grids_where_ai_can_win = {
             [2,2] => [["X", "O", "O"],
                       ["O", "X", ""],
-                      ["O", "X", ""]]
+                      ["O", "X", ""]],
+            [0,1] => [["X", "O", "O"],
+                      ["",  "", ""],
+                      ["X", "", ""]]
         }
 
         grids_where_ai_can_win.each do |space_coords, grid_cells|
