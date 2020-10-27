@@ -22,16 +22,6 @@ RSpec.describe 'The Intelligence class' do
             end
         end
 
-        it "will raise FullGridError if there are no empty spaces" do
-            # Arrange                
-            grid_cells = [["X", "X", "X"],
-                          ["X", "X", "X"],
-                          ["X", "X", "X"]] 
-
-            # Act & Assert
-            expect{Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL)}.to raise_error(FullGridError)
-        end
-
         # Arrange                
         grids_where_ai_can_win = {
             [2,2] => [["X", "O", "O"],

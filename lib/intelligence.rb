@@ -1,10 +1,9 @@
 require_relative './utils'
-require_relative './full_grid_error'
 
 class Intelligence
     def choose_move(grid, next_player)
         empty_spaces = Grid::empty_spaces(grid)
-        first_empty_space(empty_spaces)
+        empty_spaces[0]                 
     end
 
     private 

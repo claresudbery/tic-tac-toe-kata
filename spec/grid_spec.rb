@@ -34,5 +34,15 @@ RSpec.describe 'The Grid class' do
             # Assert
             expect(result).to eq(expected_result)
         end
+
+        it "will raise FullGridError if there are no empty spaces" do
+            # Arrange                
+            grid = [["X", "X", "X"],
+                    ["X", "X", "X"],
+                    ["X", "X", "X"]] 
+
+            # Act & Assert
+            expect{Grid::empty_spaces(grid)}.to raise_error(FullGridError)
+        end
     end
 end
