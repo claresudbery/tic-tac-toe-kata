@@ -1,5 +1,6 @@
 require "spec_helper"
 require_relative '../lib/intelligence'
+require_relative '../tictactoe'
 
 RSpec.describe 'The Intelligence class' do
     context "deciding where to play next" do 
@@ -29,6 +30,23 @@ RSpec.describe 'The Intelligence class' do
 
             # Act & Assert
             expect{Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL)}.to raise_error(FullGridError)
+        end
+
+        # Arrange                
+        grids_where_ai_can_win = {
+            [2,2] => [["X", "O", "O"],
+                      ["O", "X", ""],
+                      ["O", "X", ""]]
+        }
+
+        grids_where_ai_can_win.each do |space_coords, grid_cells|
+            it "will choose to play #{MyApp::DEFAULT_AI_SYMBOL} in the winning spot if there is one: #{grid_cells}" do
+                # Act
+                result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL)
+
+                # Assert
+                expect(result).to eq(space_coords)
+            end
         end
     end
 end
