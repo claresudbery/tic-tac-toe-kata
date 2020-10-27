@@ -115,6 +115,7 @@ RSpec.describe 'The tic-tac-toe App' do
     end
   
     context "artifical intelliigence" do
+      # Arrange     
       grids_with_ai_symbol = [
           [MyApp::DEFAULT_AI_SYMBOL,  [["", "",  ""],
                   ["", MyApp::BACKUP_AI_SYMBOL, ""],
@@ -126,8 +127,7 @@ RSpec.describe 'The tic-tac-toe App' do
                   ["", "Z", ""],
                   ["", "",  ""]]]
       ]
-
-      # Arrange                
+           
       grids_with_ai_symbol.each do |ai_symbol, grid_cells|
         it "will choose a move, using the symbol #{ai_symbol}, after the user has played their first move like this: #{grid_cells}." do
           # Act 

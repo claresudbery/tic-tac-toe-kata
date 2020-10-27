@@ -3,6 +3,7 @@ require_relative '../lib/win_finder'
 
 RSpec.describe 'The Win Finder class' do
     context "deciding if somebody has won" do 
+        # Arrange                
         horizontal_winning_rows = [
             ["X",  [["X", "X", "X"],
                     ["",  "",  ""],
@@ -15,7 +16,6 @@ RSpec.describe 'The Win Finder class' do
                     ["X", "X", "X"]]]
         ]
 
-        # Arrange                
         horizontal_winning_rows.each do |player, grid_cells|
             it "can detect when #{player} has won with a horizontal row, like this: #{grid_cells}" do
                 # Act
@@ -26,6 +26,7 @@ RSpec.describe 'The Win Finder class' do
             end
         end
 
+        # Arrange                
         vertical_winning_rows = [
             ["O",  [["O", "", ""],
                     ["O", "", ""],
@@ -38,7 +39,6 @@ RSpec.describe 'The Win Finder class' do
                     ["", "", "O"]]]
         ]
 
-        # Arrange                
         vertical_winning_rows.each do |player, grid_cells|
             it "can detect when #{player} has won with a vertical row, like this: #{grid_cells}" do
                 # Act
@@ -49,6 +49,7 @@ RSpec.describe 'The Win Finder class' do
             end
         end
 
+        # Arrange     
         diagonal_winning_rows = [
             ["O",  [["O", "",  ""],
                     ["",  "O", ""],
@@ -57,8 +58,7 @@ RSpec.describe 'The Win Finder class' do
                     ["",  "X", ""],
                     ["X", "",  ""]]]
         ]
-
-        # Arrange                
+           
         diagonal_winning_rows.each do |player, grid_cells|
             it "can detect when #{player} has won with a diagonal row, like this: #{grid_cells}" do
                 # Act
@@ -69,6 +69,7 @@ RSpec.describe 'The Win Finder class' do
             end
         end
 
+        # Arrange        
         no_winner_grids = [
             [["O", "O", "X"],
              ["O", "O", "X"],
@@ -90,8 +91,7 @@ RSpec.describe 'The Win Finder class' do
              ["", "", ""],
              ["", "", ""]]
         ]
-
-        # Arrange                
+        
         no_winner_grids.each do |grid_cells|
             it "will not declare a winner for a non-winning grid, like this: #{grid_cells}" do
                 # Act
