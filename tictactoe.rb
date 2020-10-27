@@ -23,7 +23,7 @@ class MyApp < Sinatra::Base
         update_session_vars_from_inputs
         update_template_vars_from_session
         update_winner
-        if @winner.nil? 
+        if @winner.nil? and !Grid::is_full(@cells)
             choose_ai_move
         end
         erb :tictactoe

@@ -6,8 +6,7 @@ class Intelligence
     THEY_WIN = -1
 
     def choose_move(grid, next_player, opponent = MyApp::DEFAULT_OPPONENT_SYMBOL)
-        choose_move_using_beatable_ai(grid, next_player, opponent)
-        #choose_move_using_unbeatable_ai(grid, next_player, opponent)
+        choose_move_using_unbeatable_ai(grid, next_player, opponent)
     end
 
     private 
@@ -26,7 +25,7 @@ class Intelligence
             puts "*************************"
             puts "************************ empty_space: #{empty_space}"
             Grid::play_move(test_grid, empty_space, next_player)
-            temp_score = get_score(test_grid, next_player, opponent)
+            temp_score = -1 * get_score(test_grid, opponent, next_player)
             puts "************************ top level score: #{temp_score}"
             puts "*************************"
             if (temp_score > score)
@@ -72,7 +71,7 @@ class Intelligence
                 found_a_winning_move = false
                 while !found_a_winning_move && index < empty_spaces.length do
                     test_grid = Grid::copy(grid)
-                    Grid::play_move(test_grid, empty_spaces[index], opponent)
+                    Grid::play_move(test_grid, empty_spaces[index], player)
                     temp_score = -1 * get_score(test_grid, opponent, player)
                     puts "************************ score: #{temp_score}"
                     found_a_winning_move = temp_score == WE_WIN ? true : false

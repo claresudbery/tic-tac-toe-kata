@@ -108,8 +108,12 @@ RSpec.describe 'The tic-tac-toe App' do
       
       it "doesn't say somebody has won the game if they haven't" do  
         # Arrange
-        grid_cells =  [["X", "",  ""],
-                       ["",  "O", ""],
+        first_opponent_move = [["O", "", ""],
+                               ["",  "", ""],
+                               ["",  "", ""]]
+        post "/tictactoe", build_post_data(first_opponent_move)  
+        grid_cells =  [["O", "",  ""],
+                       ["",  "X", ""],
                        ["",  "",  ""]]
 
         # Act 
@@ -124,14 +128,14 @@ RSpec.describe 'The tic-tac-toe App' do
       # Arrange     
       grids_with_ai_symbol = [
           [MyApp::DEFAULT_AI_SYMBOL,  [["", "",  ""],
-                  ["", MyApp::DEFAULT_OPPONENT_SYMBOL, ""],
-                  ["", "",  ""]]],
+                                       ["", MyApp::DEFAULT_OPPONENT_SYMBOL, ""],
+                                       ["", "",  ""]]],
           [MyApp::BACKUP_AI_SYMBOL,  [["", "",  ""],
-                  ["", MyApp::DEFAULT_AI_SYMBOL, ""],
-                  ["", "",  ""]]],
+                                      ["", MyApp::DEFAULT_AI_SYMBOL, ""],
+                                      ["", "",  ""]]],
           [MyApp::DEFAULT_AI_SYMBOL,  [["", "",  ""],
-                  ["", "Z", ""],
-                  ["", "",  ""]]]
+                                       ["", "Z", ""],
+                                       ["", "",  ""]]]
       ]
            
       grids_with_ai_symbol.each do |ai_symbol, grid_cells|
@@ -169,15 +173,15 @@ RSpec.describe 'The tic-tac-toe App' do
                                ["", "",  ""],
                                ["", "",  ""]]
         post "/tictactoe", build_post_data(first_opponent_move)  
-        ai_is_about_to_win = [["",  "O", "X"],
+        ai_is_about_to_win = [["",  "O", ""],
                               ["O", "X", ""],
-                              ["",  "",  ""]]
+                              ["",  "",  "X"]]
 
         # Act 
         post "/tictactoe", build_post_data(ai_is_about_to_win)  
 
         # Assert
-        expect(last_response.body).to have_tag('input.row2.col0', :with => { :value => MyApp::DEFAULT_AI_SYMBOL })
+        expect(last_response.body).to have_tag('input.row0.col0', :with => { :value => MyApp::DEFAULT_AI_SYMBOL })
       end
 
       it "will prevent the human from winning if possible" do  
