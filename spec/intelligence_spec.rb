@@ -43,7 +43,10 @@ RSpec.describe 'The Intelligence class' do
                       ["O", "X", ""]],
             [0,1] => [["X", "O", "O"],
                       ["",  "", ""],
-                      ["X", "", ""]]
+                      ["X", "", ""]],
+            [1,1] => [["O", "", "X"],
+                      ["X", "", "O"],
+                      ["X", "O",""]]
         }
 
         grids_where_ai_can_win.each do |space_coords, grid_cells|
