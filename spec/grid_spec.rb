@@ -1,5 +1,6 @@
 require "spec_helper"
 require_relative '../lib/grid'
+require_relative '../lib/utils'
 
 RSpec.describe 'The Grid class' do
     context "finding empty spaces" do 
@@ -8,9 +9,9 @@ RSpec.describe 'The Grid class' do
             grid = [["", "", ""],
                     ["", "", ""],
                     ["", "", ""]] 
-            expected_result =  [[0,0], [0,1], [0,2],
-                                [1,0], [1,1], [1,2],
-                                [2,0], [2,1], [2,2]]
+            expected_result =  [[0,0], [1,0], [2,0],
+                                [0,1], [1,1], [2,1],
+                                [0,2], [1,2], [2,2]]
 
             # Act
             result = Grid::empty_spaces(grid)
@@ -24,9 +25,9 @@ RSpec.describe 'The Grid class' do
             grid = [["", "X", "X", ""],
                     ["X", "X", "", ""],
                     ["X", "", "", ""]] 
-            expected_result =  [[0,0], [0,3],
-                                [1,2], [1,3],
-                                [2,1], [2,2], [2,3]]
+            expected_result =  [[0,0], [3,0],
+                                [2,1], [3,1],
+                                [1,2], [2,2], [3,2]]
 
             # Act
             result = Grid::empty_spaces(grid)

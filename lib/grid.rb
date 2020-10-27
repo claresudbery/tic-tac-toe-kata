@@ -4,8 +4,8 @@ class Grid
     def self.empty_spaces(grid)
         empty_cells = []
 
-        grid.each_with_index do |row, row_index|
-            row.each_with_index do |symbol, column_index|
+        grid.each_with_index do |column, column_index|
+            column.each_with_index do |symbol, row_index|
                 if Utils::nil_or_empty?(symbol)
                     empty_cells << [row_index, column_index]
                 end
@@ -17,5 +17,9 @@ class Grid
         else
             empty_cells            
         end
+    end
+
+    def self.copy(grid)
+        Marshal.load(Marshal.dump(grid))
     end
 end
