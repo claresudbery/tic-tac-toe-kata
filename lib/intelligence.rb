@@ -13,7 +13,7 @@ class Intelligence
         if empty_spaces.empty?
             raise FullGridError.new
         else
-            Grid::empty_spaces(grid)[0]            
+            empty_spaces[0]            
         end
     end
 end
