@@ -22,4 +22,10 @@ class Grid
     def self.copy(grid)
         Marshal.load(Marshal.dump(grid))
     end
+
+    def self.play_move(grid, coord, player)
+        if grid[coord[1]][coord[0]].nil? || grid[coord[1]][coord[0]].empty?
+            grid[coord[1]][coord[0]] = player
+        end
+    end
 end

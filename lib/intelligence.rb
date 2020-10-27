@@ -19,16 +19,12 @@ class Intelligence
 
     private 
 
-    def play_move(grid, coord, player)
-        grid[coord[1]][coord[0]] = player
-    end
-
     def find_winning_move(grid, empty_spaces, player)
         chosen_move = nil
 
         empty_spaces.each do |empty_space|
             test_grid = Grid::copy(grid)
-            play_move(test_grid, empty_space, player)
+            Grid::play_move(test_grid, empty_space, player)
             if WinFinder.new.get_winner(test_grid) == player
                 chosen_move = empty_space
             end
