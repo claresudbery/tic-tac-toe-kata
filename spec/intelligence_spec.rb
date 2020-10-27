@@ -137,5 +137,18 @@ RSpec.describe 'The Intelligence class' do
                 expect(result).to eq(space_coords)
             end
         end
+
+        it "given an empty grid, all moves will be scored as a draw." do
+            # Arrange                
+            empty_grid = [["", "", ""],
+                          ["", "", ""],
+                          ["", "", ""]]  
+
+            # Act
+            result = Intelligence.new.get_score(empty_grid, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
+
+            # Assert
+            expect(result).to eq(0)
+        end
     end
 end
