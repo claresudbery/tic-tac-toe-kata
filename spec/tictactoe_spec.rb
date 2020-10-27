@@ -140,12 +140,25 @@ RSpec.describe 'The tic-tac-toe App' do
 
       it "will play the winning move if there is one" do  
         # Arrange
-        grid_cells = [["X", "X", "O"],
-                      ["X", "X", "O"],
-                      ["O", "O", ""]]
+        ai_is_about_to_win = [["X", "O", ""],
+                              ["O", "X", ""],
+                              ["",  "",  ""]]
 
         # Act 
-        post "/tictactoe", build_post_data(grid_cells, MyApp::DEFAULT_AI_SYMBOL)  
+        post "/tictactoe", build_post_data(ai_is_about_to_win, MyApp::DEFAULT_AI_SYMBOL)  
+
+        # Assert
+        expect(last_response.body).to have_tag('input.row2.col2', :with => { :value => MyApp::DEFAULT_AI_SYMBOL })
+      end
+
+      it "will prevent the human from winning if possible" do  
+        # Arrange
+        human_is_about_to_win = [["O", "X", ""],
+                                 ["X", "O", ""],
+                                 ["",  "",  ""]]
+
+        # Act 
+        post "/tictactoe", build_post_data(human_is_about_to_win, MyApp::DEFAULT_AI_SYMBOL)  
 
         # Assert
         expect(last_response.body).to have_tag('input.row2.col2', :with => { :value => MyApp::DEFAULT_AI_SYMBOL })
