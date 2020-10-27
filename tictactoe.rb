@@ -23,7 +23,7 @@ class MyApp < Sinatra::Base
         update_session_vars_from_inputs
         update_template_vars_from_session
         update_winner
-        if @winner.nil? and !Grid::is_full(@cells)
+        if nobody_has_won and grid_is_not_full
             choose_ai_move
         end
         erb :tictactoe
@@ -123,5 +123,13 @@ class MyApp < Sinatra::Base
                 end
             end
         end
+    end
+
+    def nobody_has_won
+        @winner.nil?
+    end
+    
+    def grid_is_not_full
+        !Grid::is_full(@cells)
     end
 end

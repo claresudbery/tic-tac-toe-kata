@@ -233,6 +233,21 @@ RSpec.describe 'The tic-tac-toe App' do
 
         # Assert
         expect(last_response.body).to have_tag('input.row2.col1', :with => { :value => "" })
+      end      
+
+      it "will not play another move if the grid is full" do  
+        # Arrange
+        first_opponent_move = [["X", "", ""],
+                               ["",  "", ""],
+                               ["",  "", ""]]
+        post "/tictactoe", build_post_data(first_opponent_move)  
+        grid_is_full = [["X", "X", "O"],
+                        ["O", "O", "X"],
+                        ["X", "O", "O"]]
+        post_data = build_post_data(grid_is_full)
+
+        # Act & Assert
+        expect{post "/tictactoe", post_data}.not_to raise_error
       end
     end
 
