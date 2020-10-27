@@ -146,6 +146,10 @@ RSpec.describe 'The tic-tac-toe App' do
 
       it "will play the winning move if there is one" do  
         # Arrange
+        first_opponent_move = [["", "O", ""],
+                               ["", "",  ""],
+                               ["", "",  ""]]
+        post "/tictactoe", build_post_data(first_opponent_move, MyApp::DEFAULT_AI_SYMBOL)  
         ai_is_about_to_win = [["X", "O", ""],
                               ["O", "X", ""],
                               ["",  "",  ""]]
@@ -159,6 +163,10 @@ RSpec.describe 'The tic-tac-toe App' do
 
       it "will prevent the human from winning if possible" do  
         # Arrange
+        first_opponent_move = [["O", "", ""],
+                               ["",  "", ""],
+                               ["",  "", ""]]
+        post "/tictactoe", build_post_data(first_opponent_move, MyApp::DEFAULT_AI_SYMBOL)  
         human_is_about_to_win = [["O", "X", ""],
                                  ["X", "O", ""],
                                  ["",  "",  ""]]

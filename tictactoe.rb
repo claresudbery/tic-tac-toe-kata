@@ -3,6 +3,8 @@ require "erb"
 require_relative './lib/win_finder'
 require_relative './lib/intelligence'
 require_relative './lib/utils'
+require_relative './lib/full_grid_error'
+require_relative './lib/grid'
 
 class MyApp < Sinatra::Base
     DEFAULT_AI_SYMBOL = "X"
@@ -79,9 +81,7 @@ class MyApp < Sinatra::Base
     def set_ai_symbol(num_inputs, first_input)
         if num_inputs == 1
             session[:ai_symbol] = (first_input == DEFAULT_AI_SYMBOL ? BACKUP_AI_SYMBOL : DEFAULT_AI_SYMBOL)
-        else
-            session[:ai_symbol] = params["ai_symbol"]
-        end        
+        end      
     end
 
     def update_template_vars_from_session
@@ -97,7 +97,7 @@ class MyApp < Sinatra::Base
                     @cells[row][col] = session[:cell_values][row][col]
                 end
             end
-        end        
+        end  
     end
 
     def clear_session_vars
