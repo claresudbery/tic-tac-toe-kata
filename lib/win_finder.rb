@@ -11,8 +11,6 @@ class WinFinder
     private 
 
     def find_winner_in_all_lines(lines)
-        puts "******************************* lines: "
-        p lines
         winner = nil
         i = 0
 
@@ -20,12 +18,7 @@ class WinFinder
             winner = find_winner_in_line(lines[i])
             i = i + 1
         end
-
-        if !winner.nil?
-            puts "******************************* lines with winner: "
-            p lines
-            p winner
-        end
+        
         winner
     end
 

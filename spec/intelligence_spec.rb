@@ -66,12 +66,12 @@ RSpec.describe 'The Intelligence class' do
             [2,2] => [["O", "X", "O"],
                       ["X", "O", ""],
                       ["X", "O", ""]],
-            [0,1] => [["O", "X", "X"],
-                      ["",  "", ""],
-                      ["O", "", ""]],
-            [2,0] => [["O", "O", ""],
+            [0,1] => [["O", "X", ""],
+                      ["",  "",  "X"],
+                      ["O", "",  ""]],
+            [0,2] => [["",  "X", ""],
                       ["X", "",  ""],
-                      ["",  "X", ""]]
+                      ["",  "O", "O"]]
         }
 
         grids_where_other_player_could_win.each do |space_coords, grid_cells|
