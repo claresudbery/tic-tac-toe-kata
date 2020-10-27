@@ -3,6 +3,12 @@ ENV['APP_ENV'] = 'test'
 require "spec_helper"
 
 require_relative '../tictactoe'
+require_relative '../lib/full_grid_error'
+require_relative '../lib/grid'
+require_relative '../lib/intelligence'
+require_relative '../lib/utils'
+require_relative '../lib/win_finder'
+
 require 'rspec'
 require 'rack/test'
 
@@ -102,8 +108,8 @@ RSpec.describe 'The tic-tac-toe App' do
       
       it "doesn't say somebody has won the game if they haven't" do  
         # Arrange
-        grid_cells =  [["X", "O", ""],
-                       ["X", "O", ""],
+        grid_cells =  [["X", "",  ""],
+                       ["",  "O", ""],
                        ["",  "",  ""]]
 
         # Act 
