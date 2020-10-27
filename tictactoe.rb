@@ -4,8 +4,8 @@ require_relative './lib/win_finder'
 require_relative './lib/intelligence'
 
 class MyApp < Sinatra::Base
-    DEFAULT_AI_SYMBOL = "O"
-    BACKUP_AI_SYMBOL = "X"
+    DEFAULT_AI_SYMBOL = "X"
+    BACKUP_AI_SYMBOL = "O"
 
     enable :sessions
 

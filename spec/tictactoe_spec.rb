@@ -117,7 +117,7 @@ RSpec.describe 'The tic-tac-toe App' do
     context "artifical intelliigence" do
       grids_with_ai_symbol = [
           [MyApp::DEFAULT_AI_SYMBOL,  [["", "",  ""],
-                  ["", "X", ""],
+                  ["", MyApp::BACKUP_AI_SYMBOL, ""],
                   ["", "",  ""]]],
           [MyApp::BACKUP_AI_SYMBOL,  [["", "",  ""],
                   ["", MyApp::DEFAULT_AI_SYMBOL, ""],
@@ -140,15 +140,15 @@ RSpec.describe 'The tic-tac-toe App' do
 
       it "will play the winning move if there is one" do  
         # Arrange
-        grid_cells = [["O", "O", "X"],
-                      ["O", "O", "X"],
-                      ["X", "X", ""]]
+        grid_cells = [["X", "X", "O"],
+                      ["X", "X", "O"],
+                      ["O", "O", ""]]
 
         # Act 
         post "/tictactoe", build_post_data(grid_cells, MyApp::DEFAULT_AI_SYMBOL)  
 
         # Assert
-        expect(last_response.body).to have_tag('input.row2.col2', :with => { :value => 'O' })
+        expect(last_response.body).to have_tag('input.row2.col2', :with => { :value => MyApp::DEFAULT_AI_SYMBOL })
       end
     end
 
