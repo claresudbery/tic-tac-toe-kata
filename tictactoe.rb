@@ -33,14 +33,14 @@ class MyApp < Sinatra::Base
     private
 
     def choose_ai_move
-        ai_move = TicTacToeLogic.new.choose_move(@cells, session[:ai_symbol])
+        ai_move = WinFinder.new.choose_move(@cells, session[:ai_symbol])
         if @cells[ai_move[0]][ai_move[1]].nil? || @cells[ai_move[0]][ai_move[1]].empty?
             @cells[ai_move[0]][ai_move[1]] = session[:ai_symbol]
         end
     end
 
     def update_winner
-        @winner = TicTacToeLogic.new.get_winner(@cells)
+        @winner = WinFinder.new.get_winner(@cells)
     end
 
     def update_session_vars_from_inputs

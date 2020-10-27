@@ -18,7 +18,7 @@ RSpec.describe 'The tic-tac-toe App' do
         horizontal_winning_rows.each do |player, grid_cells|
             it "can detect when #{player} has won with a horizontal row, like this: #{grid_cells}" do
                 # Act
-                result = TicTacToeLogic.new.get_winner(grid_cells)
+                result = WinFinder.new.get_winner(grid_cells)
 
                 # Assert
                 expect(result).to eq(player)
@@ -41,7 +41,7 @@ RSpec.describe 'The tic-tac-toe App' do
         vertical_winning_rows.each do |player, grid_cells|
             it "can detect when #{player} has won with a vertical row, like this: #{grid_cells}" do
                 # Act
-                result = TicTacToeLogic.new.get_winner(grid_cells)
+                result = WinFinder.new.get_winner(grid_cells)
 
                 # Assert
                 expect(result).to eq(player)
@@ -61,7 +61,7 @@ RSpec.describe 'The tic-tac-toe App' do
         diagonal_winning_rows.each do |player, grid_cells|
             it "can detect when #{player} has won with a diagonal row, like this: #{grid_cells}" do
                 # Act
-                result = TicTacToeLogic.new.get_winner(grid_cells)
+                result = WinFinder.new.get_winner(grid_cells)
 
                 # Assert
                 expect(result).to eq(player)
@@ -94,7 +94,7 @@ RSpec.describe 'The tic-tac-toe App' do
         no_winner_grids.each do |grid_cells|
             it "will not declare a winner for a non-winning grid, like this: #{grid_cells}" do
                 # Act
-                result = TicTacToeLogic.new.get_winner(grid_cells)
+                result = WinFinder.new.get_winner(grid_cells)
 
                 # Assert
                 expect(result).to eq(nil)
@@ -110,7 +110,7 @@ RSpec.describe 'The tic-tac-toe App' do
                           ["X", "X", ""]]
 
             # Act
-            result = TicTacToeLogic.new.choose_move(grid_cells, "O")
+            result = WinFinder.new.choose_move(grid_cells, "O")
 
             # Assert
             expect(result).to eq([2,2])
