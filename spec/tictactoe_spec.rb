@@ -149,13 +149,13 @@ RSpec.describe 'The tic-tac-toe App' do
         first_opponent_move = [["", "O", ""],
                                ["", "",  ""],
                                ["", "",  ""]]
-        post "/tictactoe", build_post_data(first_opponent_move, MyApp::DEFAULT_AI_SYMBOL)  
+        post "/tictactoe", build_post_data(first_opponent_move)  
         ai_is_about_to_win = [["X", "O", ""],
                               ["O", "X", ""],
                               ["",  "",  ""]]
 
         # Act 
-        post "/tictactoe", build_post_data(ai_is_about_to_win, MyApp::DEFAULT_AI_SYMBOL)  
+        post "/tictactoe", build_post_data(ai_is_about_to_win)  
 
         # Assert
         expect(last_response.body).to have_tag('input.row2.col2', :with => { :value => MyApp::DEFAULT_AI_SYMBOL })
@@ -166,13 +166,13 @@ RSpec.describe 'The tic-tac-toe App' do
         first_opponent_move = [["O", "", ""],
                                ["",  "", ""],
                                ["",  "", ""]]
-        post "/tictactoe", build_post_data(first_opponent_move, MyApp::DEFAULT_AI_SYMBOL)  
+        post "/tictactoe", build_post_data(first_opponent_move)  
         human_is_about_to_win = [["O", "X", ""],
                                  ["X", "O", ""],
                                  ["",  "",  ""]]
 
         # Act 
-        post "/tictactoe", build_post_data(human_is_about_to_win, MyApp::DEFAULT_AI_SYMBOL)  
+        post "/tictactoe", build_post_data(human_is_about_to_win)  
 
         # Assert
         expect(last_response.body).to have_tag('input.row2.col2', :with => { :value => MyApp::DEFAULT_AI_SYMBOL })
@@ -181,7 +181,7 @@ RSpec.describe 'The tic-tac-toe App' do
 
     private
 
-    def build_post_data (grid_cells, ai_symbol = MyApp::DEFAULT_AI_SYMBOL) 
+    def build_post_data (grid_cells) 
       grid_cell_names = [:row0_col0_in, \
                          :row0_col1_in, \
                          :row0_col2_in, \
@@ -199,8 +199,6 @@ RSpec.describe 'The tic-tac-toe App' do
           grid_cells_with_names[grid_cell_names[index]] = grid_cells[row][col]
         end
       end
-
-      grid_cells_with_names[:ai_symbol] = ai_symbol
 
       grid_cells_with_names
     end
