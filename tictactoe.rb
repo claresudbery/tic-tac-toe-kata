@@ -22,8 +22,10 @@ class MyApp < Sinatra::Base
     post "/tictactoe" do
         update_session_vars_from_inputs
         update_template_vars_from_session
-        choose_ai_move
         update_winner
+        if @winner.nil? 
+            choose_ai_move
+        end
         erb :tictactoe
     end
 

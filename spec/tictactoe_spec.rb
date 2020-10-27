@@ -143,7 +143,7 @@ RSpec.describe 'The tic-tac-toe App' do
           expect(last_response.body).to have_tag('input.row0.col0', :with => { :value => ai_symbol })
         end
       end
-      
+
       it "will remember the AI symbol after multiple gets and posts" do  
         # Arrange
         first_opponent_move = [["", "",  ""],
@@ -212,6 +212,23 @@ RSpec.describe 'The tic-tac-toe App' do
 
         # Assert
         expect(last_response.body).to have_tag('input.row2.col2', :with => { :value => MyApp::BACKUP_AI_SYMBOL })
+      end
+
+      it "will not play another move if the human wins" do  
+        # Arrange
+        first_opponent_move = [["O", "", ""],
+                               ["",  "", ""],
+                               ["",  "", ""]]
+        post "/tictactoe", build_post_data(first_opponent_move)  
+        human_has_won = [["O", "X", ""],
+                         ["O", "O", "O"],
+                         ["X", "",  "X"]]
+
+        # Act 
+        post "/tictactoe", build_post_data(human_has_won)  
+
+        # Assert
+        expect(last_response.body).to have_tag('input.row2.col1', :with => { :value => "" })
       end
     end
 
