@@ -58,5 +58,28 @@ RSpec.describe 'The Intelligence class' do
                 expect(result).to eq(space_coords)
             end
         end
+
+        # Arrange                
+        grids_where_other_player_could_win = {
+            [2,2] => [["O", "X", "O"],
+                      ["X", "O", ""],
+                      ["X", "O", ""]],
+            [0,1] => [["O", "X", "X"],
+                      ["",  "", ""],
+                      ["O", "", ""]],
+            [2,0] => [["O", "O", ""],
+                      ["X", "X", ""],
+                      ["",  "",  ""]]
+        }
+
+        grids_where_other_player_could_win.each do |space_coords, grid_cells|
+            it "will prevent #{MyApp::BACKUP_AI_SYMBOL} from winning in this grid: #{grid_cells}" do
+                # Act
+                result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL)
+
+                # Assert
+                expect(result).to eq(space_coords)
+            end
+        end
     end
 end
