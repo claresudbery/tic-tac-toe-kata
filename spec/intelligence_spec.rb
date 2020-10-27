@@ -1,5 +1,7 @@
 require "spec_helper"
 require_relative '../lib/intelligence'
+require_relative '../lib/grid'
+require_relative '../lib/utils'
 require_relative '../tictactoe'
 
 RSpec.describe 'The Intelligence class' do
@@ -68,14 +70,14 @@ RSpec.describe 'The Intelligence class' do
                       ["",  "", ""],
                       ["O", "", ""]],
             [2,0] => [["O", "O", ""],
-                      ["X", "X", ""],
-                      ["",  "",  ""]]
+                      ["X", "",  ""],
+                      ["",  "X", ""]]
         }
 
         grids_where_other_player_could_win.each do |space_coords, grid_cells|
             it "will prevent #{MyApp::DEFAULT_OPPONENT_SYMBOL} from winning in this grid: #{grid_cells}" do
                 # Act
-                result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL, MyApp:DEFAULT_OPPONENT_SYMBOL)
+                result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
 
                 # Assert
                 expect(result).to eq(space_coords)
