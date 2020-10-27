@@ -1,0 +1,2 @@
+class FullGridError < StandardError
+end

@@ -134,7 +134,7 @@ RSpec.describe 'The tic-tac-toe App' do
           post "/tictactoe", build_post_data(grid_cells)  
   
           # Assert
-          expect(last_response.body).to have_tag('input.row2.col2', :with => { :value => ai_symbol })
+          expect(last_response.body).to have_tag('input.row0.col0', :with => { :value => ai_symbol })
         end
       end
 
