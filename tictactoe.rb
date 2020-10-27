@@ -1,6 +1,6 @@
 require "sinatra/base"
 require "erb"
-require_relative './lib/tictactoe_logic'
+require_relative './lib/win_finder'
 
 class MyApp < Sinatra::Base
     DEFAULT_AI_SYMBOL = "O"
