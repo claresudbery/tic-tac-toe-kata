@@ -83,5 +83,22 @@ RSpec.describe 'The Intelligence class' do
                 expect(result).to eq(space_coords)
             end
         end
+
+        # Arrange                
+        grids_with_a_choice_between_win_or_draw = {
+            [1,1] => [["X", "O", "X"], # see diagram F
+                      ["",  "",  "O"],
+                      ["",  "",  ""]]
+        }
+
+        grids_with_a_choice_between_win_or_draw.each do |space_coords, grid_cells|
+            it "will choose the first winning move (instead of draw) in this grid: #{grid_cells}" do
+                # Act
+                result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
+
+                # Assert
+                expect(result).to eq(space_coords)
+            end
+        end
     end
 end
