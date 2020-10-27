@@ -1,6 +1,7 @@
 require "sinatra/base"
 require "erb"
 require_relative './lib/win_finder'
+require_relative './lib/intelligence'
 
 class MyApp < Sinatra::Base
     DEFAULT_AI_SYMBOL = "O"
@@ -33,7 +34,7 @@ class MyApp < Sinatra::Base
     private
 
     def choose_ai_move
-        ai_move = WinFinder.new.choose_move(@cells, session[:ai_symbol])
+        ai_move = Intelligence.new.choose_move(@cells, session[:ai_symbol])
         if @cells[ai_move[0]][ai_move[1]].nil? || @cells[ai_move[0]][ai_move[1]].empty?
             @cells[ai_move[0]][ai_move[1]] = session[:ai_symbol]
         end
