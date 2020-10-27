@@ -14,20 +14,13 @@ class Intelligence
     def choose_move_using_unbeatable_ai(grid, next_player, opponent)
         empty_spaces = Grid::empty_spaces_no_exception(grid)
 
-        puts "************************ empty_spaces: "
-        p empty_spaces
-
         chosen_move = nil
         score = -2
 
         empty_spaces.each do |empty_space|
             test_grid = Grid::copy(grid)
-            puts "*************************"
-            puts "************************ empty_space: #{empty_space}"
             Grid::play_move(test_grid, empty_space, next_player)
             temp_score = -1 * get_score(test_grid, opponent, next_player)
-            puts "************************ top level score: #{temp_score}"
-            puts "*************************"
             if (temp_score > score)
                 score = temp_score
                 chosen_move = empty_space
@@ -57,14 +50,10 @@ class Intelligence
         score = -2
         winner = WinFinder.new.get_winner(grid)
         if !winner.nil?
-           # puts "******************************** Found a win. Player, grid: #{player}"
-            #p grid
             score = (winner == player) ? WE_WIN : THEY_WIN
         else
             empty_spaces = Grid::empty_spaces_no_exception(grid)    
             if empty_spaces.empty? 
-                #puts "******************************** Found a draw. Player, grid: #{player}"
-                #p grid
                 score = DRAW
             else   
                 index = 0
@@ -73,7 +62,6 @@ class Intelligence
                     test_grid = Grid::copy(grid)
                     Grid::play_move(test_grid, empty_spaces[index], player)
                     temp_score = -1 * get_score(test_grid, opponent, player)
-                    puts "************************ score: #{temp_score}"
                     found_a_winning_move = temp_score == WE_WIN ? true : false
                     index = index + 1
                     score = temp_score > score ? temp_score : score

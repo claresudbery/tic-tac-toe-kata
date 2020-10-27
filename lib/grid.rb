@@ -41,7 +41,5 @@ class Grid
         if grid[coord[1]][coord[0]].nil? || grid[coord[1]][coord[0]].empty?
             grid[coord[1]][coord[0]] = player
         end
-        puts "******************************** coord, player, played grid: #{coord}, #{player}"
-        p grid
     end
 end
