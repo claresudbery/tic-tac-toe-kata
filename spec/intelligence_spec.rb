@@ -119,6 +119,23 @@ RSpec.describe 'The Intelligence class' do
                 # Assert
                 expect(result).to eq(space_coords)
             end
+        end      
+
+        # Arrange                
+        loss_is_unavoidable = {
+            [1,0] => [["O", "",  "X"], # see diagram C
+                      ["X", "O", ""],
+                      ["X", "O", ""]]
+        }
+
+        loss_is_unavoidable.each do |space_coords, grid_cells|
+            it "will choose the first losing space if loss is unavoidable: #{grid_cells}" do
+                # Act
+                result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
+
+                # Assert
+                expect(result).to eq(space_coords)
+            end
         end
     end
 end
