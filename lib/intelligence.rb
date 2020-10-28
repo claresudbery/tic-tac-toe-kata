@@ -21,7 +21,7 @@ class Intelligence
             if Grid.is_full(grid) 
                 score = DRAW
             else   
-                score = find_best_move(grid, current_player, opponent)[:score]
+                score = find_best_move_recursively(grid, current_player, opponent)[:score]
             end
         end
         score
@@ -34,10 +34,10 @@ class Intelligence
     end
 
     def choose_move_using_unbeatable_ai(grid, next_player, opponent)
-        find_best_move(grid, next_player, opponent)[:best_move]
+        find_best_move_recursively(grid, next_player, opponent)[:best_move]
     end
 
-    def find_best_move(grid, current_player, opponent)
+    def find_best_move_recursively(grid, current_player, opponent)
         empty_spaces = Grid::empty_spaces_no_exception(grid)
         score = -2
         index = 0
