@@ -20,7 +20,7 @@ class Intelligence
             score = (winner == player) ? WE_WIN : THEY_WIN
         else
             empty_spaces = Grid::empty_spaces_no_exception(grid)    
-            if empty_spaces.empty? 
+            if no_more_moves_to_play(empty_spaces)  
                 score = DRAW
             else   
                 index = 0
@@ -39,6 +39,10 @@ class Intelligence
     end
 
     private 
+
+    def no_more_moves_to_play(empty_spaces) 
+        empty_spaces.empty? 
+    end
 
     def choose_move_using_unbeatable_ai(grid, next_player, opponent)
         empty_spaces = Grid::empty_spaces_no_exception(grid)
