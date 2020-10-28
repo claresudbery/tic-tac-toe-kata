@@ -37,7 +37,7 @@ class Intelligence
         find_best_move(grid, next_player, opponent)[:best_move]
     end
 
-    def find_best_move(grid, next_player, opponent)
+    def find_best_move(grid, current_player, opponent)
         empty_spaces = Grid::empty_spaces_no_exception(grid)
         score = -2
         index = 0
@@ -45,8 +45,8 @@ class Intelligence
 
         while !found_a_winning_move && index < empty_spaces.length do
             test_grid = Grid::copy(grid)
-            Grid::play_move(test_grid, empty_spaces[index], next_player)
-            temp_score = -1 * get_minimax_score(test_grid, opponent, next_player)
+            Grid::play_move(test_grid, empty_spaces[index], current_player)
+            temp_score = get_opponent_score_and_invert_it(test_grid, opponent, current_player)
             found_a_winning_move = temp_score == WE_WIN ? true : false
             if (temp_score > score)
                 score = temp_score
@@ -56,6 +56,10 @@ class Intelligence
         end
 
         { :score => score, :best_move => chosen_move }
+    end
+
+    def get_opponent_score_and_invert_it(test_grid, opponent, current_player)
+        -1 * get_minimax_score(test_grid, opponent, current_player)
     end
 
     def choose_move_using_beatable_ai(grid, next_player, opponent)
