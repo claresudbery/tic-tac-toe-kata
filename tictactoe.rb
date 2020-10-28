@@ -49,7 +49,7 @@ class MyApp < Sinatra::Base
     end
 
     def update_winner
-        @winner = WinFinder::get_winner(@cells)
+        @winner = WinFinder.new.get_winner(@cells)
     end
 
     def update_session_vars_from_inputs
