@@ -37,24 +37,6 @@ class Intelligence
         find_best_move_recursively(grid, next_player, opponent)[:best_move]
     end
 
-    def find_instant_winning_move(grid, empty_spaces, current_player)
-        instant_winning_move = nil
-
-        index = 0
-        found_instant_win = false
-        while !found_instant_win && index < empty_spaces.length do
-            test_grid = Grid::copy(grid)
-            Grid::play_move(test_grid, empty_spaces[index], current_player)
-            if (@win_finder.get_winner(test_grid) == current_player)
-                found_instant_win = true
-                instant_winning_move = empty_spaces[index]
-            end
-            index = index + 1
-        end
-
-        instant_winning_move
-    end
-
     def find_best_move_recursively(grid, current_player, opponent)
         empty_spaces = Grid::empty_spaces_no_exception(grid)        
 
@@ -80,6 +62,24 @@ class Intelligence
         end
 
         { :score => score, :best_move => best_move }
+    end
+
+    def find_instant_winning_move(grid, empty_spaces, current_player)
+        instant_winning_move = nil
+
+        index = 0
+        found_instant_win = false
+        while !found_instant_win && index < empty_spaces.length do
+            test_grid = Grid::copy(grid)
+            Grid::play_move(test_grid, empty_spaces[index], current_player)
+            if (@win_finder.get_winner(test_grid) == current_player)
+                found_instant_win = true
+                instant_winning_move = empty_spaces[index]
+            end
+            index = index + 1
+        end
+
+        instant_winning_move
     end
 
     def get_opponent_score_and_invert_it(test_grid, opponent, current_player)
