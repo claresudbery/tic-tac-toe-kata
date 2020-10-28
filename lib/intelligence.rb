@@ -42,7 +42,7 @@ class Intelligence
 
         instant_winning_move = find_instant_winning_move(grid, empty_spaces, current_player)
         if !instant_winning_move.nil?
-            result = { :score => WE_WIN, :best_move => instant_winning_move }
+            result = { score: WE_WIN, best_move: instant_winning_move }
         else
             result = find_first_good_move(empty_spaces, grid, current_player, opponent)
         end
@@ -67,7 +67,7 @@ class Intelligence
             index = index + 1
         end
 
-        { :score => score, :best_move => best_move }
+        { score: score, best_move: best_move }
     end
 
     def find_instant_winning_move(grid, empty_spaces, current_player)
