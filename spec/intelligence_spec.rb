@@ -145,7 +145,7 @@ RSpec.describe 'The Intelligence class' do
                           ["", "", ""]]  
 
             # Act
-            result = Intelligence.new.get_score(empty_grid, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
+            result = Intelligence.new.get_minimax_score(empty_grid, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
 
             # Assert
             expect(result).to eq(0)

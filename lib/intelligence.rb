@@ -9,7 +9,7 @@ class Intelligence
         choose_move_using_unbeatable_ai(grid, next_player, opponent)
     end
 
-    def get_score(grid, player, opponent)
+    def get_minimax_score(grid, player, opponent)
         score = -2
         winner = WinFinder.new.get_winner(grid)
         if !winner.nil?
@@ -24,7 +24,7 @@ class Intelligence
                 while !found_a_winning_move && index < empty_spaces.length do
                     test_grid = Grid::copy(grid)
                     Grid::play_move(test_grid, empty_spaces[index], player)
-                    temp_score = -1 * get_score(test_grid, opponent, player)
+                    temp_score = -1 * get_minimax_score(test_grid, opponent, player)
                     found_a_winning_move = temp_score == WE_WIN ? true : false
                     index = index + 1
                     score = temp_score > score ? temp_score : score
@@ -45,7 +45,7 @@ class Intelligence
         empty_spaces.each do |empty_space|
             test_grid = Grid::copy(grid)
             Grid::play_move(test_grid, empty_space, next_player)
-            temp_score = -1 * get_score(test_grid, opponent, next_player)
+            temp_score = -1 * get_minimax_score(test_grid, opponent, next_player)
             if (temp_score > score)
                 score = temp_score
                 chosen_move = empty_space
