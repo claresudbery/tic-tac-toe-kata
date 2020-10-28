@@ -5,13 +5,17 @@ class Intelligence
     DRAW = 0
     THEY_WIN = -1
 
+    def initialize
+        @win_finder = WinFinder.new
+    end
+
     def choose_move(grid, next_player, opponent = MyApp::DEFAULT_OPPONENT_SYMBOL)
         choose_move_using_unbeatable_ai(grid, next_player, opponent)
     end
 
     def get_minimax_score(grid, player, opponent)
         score = -2
-        winner = WinFinder.new.get_winner(grid)
+        winner = @win_finder.get_winner(grid)
         if !winner.nil?
             score = (winner == player) ? WE_WIN : THEY_WIN
         else
@@ -77,7 +81,7 @@ class Intelligence
         empty_spaces.each do |empty_space|
             test_grid = Grid::copy(grid)
             Grid::play_move(test_grid, empty_space, player)
-            if WinFinder.new.get_winner(test_grid) == player
+            if @win_finder.get_winner(test_grid) == player
                 chosen_move = empty_space
             end
         end
