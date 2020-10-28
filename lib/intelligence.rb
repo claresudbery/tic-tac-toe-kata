@@ -42,23 +42,29 @@ class Intelligence
 
         instant_winning_move = find_instant_winning_move(grid, empty_spaces, current_player)
         if !instant_winning_move.nil?
-            best_move = instant_winning_move
-            score = WE_WIN
+            result = { :score => WE_WIN, :best_move => instant_winning_move }
         else
-            score = -2
-            index = 0
-            found_a_winning_move = false
-            while !found_a_winning_move && index < empty_spaces.length do
-                test_grid = Grid::copy(grid)
-                Grid::play_move(test_grid, empty_spaces[index], current_player)
-                temp_score = get_opponent_score_and_invert_it(test_grid, opponent, current_player)
-                found_a_winning_move = temp_score == WE_WIN ? true : false
-                if (temp_score > score)
-                    score = temp_score
-                    best_move = empty_spaces[index]
-                end
-                index = index + 1
+            result = find_first_good_move(empty_spaces, grid, current_player, opponent)
+        end
+
+        result
+    end
+
+    def find_first_good_move(empty_spaces, grid, current_player, opponent)
+        score = -2
+        index = 0
+        found_a_winning_move = false
+
+        while !found_a_winning_move && index < empty_spaces.length do
+            test_grid = Grid::copy(grid)
+            Grid::play_move(test_grid, empty_spaces[index], current_player)
+            temp_score = get_opponent_score_and_invert_it(test_grid, opponent, current_player)
+            found_a_winning_move = temp_score == WE_WIN ? true : false
+            if (temp_score > score)
+                score = temp_score
+                best_move = empty_spaces[index]
             end
+            index = index + 1
         end
 
         { :score => score, :best_move => best_move }
