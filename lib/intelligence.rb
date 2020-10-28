@@ -60,7 +60,7 @@ class Intelligence
 
         instant_winning_move = find_instant_winning_move(grid, empty_spaces, current_player)
         if !instant_winning_move.nil?
-            chosen_move = instant_winning_move
+            best_move = instant_winning_move
             score = WE_WIN
         else
             score = -2
@@ -73,13 +73,13 @@ class Intelligence
                 found_a_winning_move = temp_score == WE_WIN ? true : false
                 if (temp_score > score)
                     score = temp_score
-                    chosen_move = empty_spaces[index]
+                    best_move = empty_spaces[index]
                 end
                 index = index + 1
             end
         end
 
-        { :score => score, :best_move => chosen_move }
+        { :score => score, :best_move => best_move }
     end
 
     def get_opponent_score_and_invert_it(test_grid, opponent, current_player)
