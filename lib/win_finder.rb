@@ -1,5 +1,5 @@
 class WinFinder
-    def get_winner(rows)
+    def self.get_winner(rows)
         columns = rows.transpose
         diagonals = [[rows[0][0], rows[1][1], rows[2][2]],
                      [rows[0][2], rows[1][1], rows[2][0]]]
@@ -10,7 +10,7 @@ class WinFinder
 
     private 
 
-    def find_winner_in_all_lines(lines)
+    def self.find_winner_in_all_lines(lines)
         winner = nil
         i = 0
 
@@ -22,7 +22,7 @@ class WinFinder
         winner
     end
 
-    def find_winner_in_line(grid_line)
+    def self.find_winner_in_line(grid_line)
         if !grid_line[0].nil? && !grid_line[0].empty? \
                 && (grid_line[0] == grid_line[1]) \
                 && (grid_line[1] == grid_line[2])

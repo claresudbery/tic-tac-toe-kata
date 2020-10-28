@@ -11,7 +11,7 @@ class Intelligence
 
     def get_minimax_score(grid, player, opponent)
         score = -2
-        winner = WinFinder.new.get_winner(grid)
+        winner = WinFinder::get_winner(grid)
         if !winner.nil?
             score = (winner == player) ? WE_WIN : THEY_WIN
         else
@@ -77,7 +77,7 @@ class Intelligence
         empty_spaces.each do |empty_space|
             test_grid = Grid::copy(grid)
             Grid::play_move(test_grid, empty_space, player)
-            if WinFinder.new.get_winner(test_grid) == player
+            if WinFinder::get_winner(test_grid) == player
                 chosen_move = empty_space
             end
         end
