@@ -148,6 +148,19 @@ RSpec.describe 'The tic-tac-toe App' do
         end
       end
 
+      it "will start a game using the default AI symbol if user submits an empty board." do  
+        # Arrange
+        no_opening_move = [["", "", ""],
+                           ["", "", ""],
+                           ["", "", ""]]
+
+        # Act 
+        post "/tictactoe", build_post_data(no_opening_move)  
+
+        # Assert
+        expect(last_response.body).to have_tag('input.row0.col0', :with => { :value => MyApp::DEFAULT_AI_SYMBOL })
+      end
+
       it "will remember the AI symbol after multiple gets and posts" do  
         # Arrange
         first_opponent_move = [["", "",  ""],
