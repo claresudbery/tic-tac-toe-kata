@@ -45,13 +45,15 @@ class Intelligence
     end
 
     def choose_move_using_unbeatable_ai(grid, next_player, opponent)
+        find_best_move(grid, next_player, opponent)[:best_move]
+    end
+
+    def find_best_move(grid, next_player, opponent)
         empty_spaces = Grid::empty_spaces_no_exception(grid)
-
-        chosen_move = nil
-
         score = -2
         index = 0
         found_a_winning_move = false
+        
         while !found_a_winning_move && index < empty_spaces.length do
             test_grid = Grid::copy(grid)
             Grid::play_move(test_grid, empty_spaces[index], next_player)
@@ -64,7 +66,7 @@ class Intelligence
             index = index + 1
         end
 
-        chosen_move
+        { :score => score, :best_move => chosen_move }
     end
 
     def choose_move_using_beatable_ai(grid, next_player, opponent)
