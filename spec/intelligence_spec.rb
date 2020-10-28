@@ -199,18 +199,5 @@ RSpec.describe 'The Intelligence class' do
             # Assert
             expect(result).to eq([0,2])
         end 
-
-        it "even if opponent will win eventually, still block a win in the next move." do
-            # Arrange                
-            grid_cells = [["O", "X", ""], # see diagram K
-                          ["",  "",  "X"],
-                          ["O", "",  ""]]  
-
-            # Act
-            result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
-
-            # Assert
-            expect(result).to eq([0,1])
-        end 
     end
 end
