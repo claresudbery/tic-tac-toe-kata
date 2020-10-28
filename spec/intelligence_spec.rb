@@ -173,5 +173,31 @@ RSpec.describe 'The Intelligence class' do
                 expect(result).to eq(space_coords)
             end
         end
+
+        it "given a choice between multiple instant winning moves, it will choose the first." do
+            # Arrange                
+            grid_cells = [["X", "",  "X"], # see diagram E
+                          ["O", "",  ""],
+                          ["O", "O", "X"]]  
+
+            # Act
+            result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
+
+            # Assert
+            expect(result).to eq([1,0])
+        end 
+
+        it "given a choice between multiple non-instant winning moves, it will choose the first." do
+            # Arrange                
+            grid_cells = [["",  "O", ""], # see diagram G
+                          ["O", "X", ""],
+                          ["",  "X", ""]]  
+
+            # Act
+            result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
+
+            # Assert
+            expect(result).to eq([0,2])
+        end 
     end
 end
