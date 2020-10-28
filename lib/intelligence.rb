@@ -45,8 +45,10 @@ class Intelligence
         while !found_instant_win && index < empty_spaces.length do
             test_grid = Grid::copy(grid)
             Grid::play_move(test_grid, empty_spaces[index], current_player)
-            found_instant_win = (@win_finder.get_winner(test_grid) == current_player)
-            instant_winning_move = empty_spaces[index]
+            if (@win_finder.get_winner(test_grid) == current_player)
+                found_instant_win = true
+                instant_winning_move = empty_spaces[index]
+            end
             index = index + 1
         end
 
