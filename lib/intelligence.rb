@@ -37,22 +37,44 @@ class Intelligence
         find_best_move_recursively(grid, next_player, opponent)[:best_move]
     end
 
-    def find_best_move_recursively(grid, current_player, opponent)
-        empty_spaces = Grid::empty_spaces_no_exception(grid)
-        score = -2
-        index = 0
-        found_a_winning_move = false
+    def find_instant_winning_move(grid, empty_spaces, current_player)
+        instant_winning_move = nil
 
-        while !found_a_winning_move && index < empty_spaces.length do
+        index = 0
+        found_instant_win = false
+        while !found_instant_win && index < empty_spaces.length do
             test_grid = Grid::copy(grid)
             Grid::play_move(test_grid, empty_spaces[index], current_player)
-            temp_score = get_opponent_score_and_invert_it(test_grid, opponent, current_player)
-            found_a_winning_move = temp_score == WE_WIN ? true : false
-            if (temp_score > score)
-                score = temp_score
-                chosen_move = empty_spaces[index]
-            end
+            found_instant_win = (@win_finder.get_winner(test_grid) == current_player)
+            instant_winning_move = empty_spaces[index]
             index = index + 1
+        end
+
+        instant_winning_move
+    end
+
+    def find_best_move_recursively(grid, current_player, opponent)
+        empty_spaces = Grid::empty_spaces_no_exception(grid)        
+
+        instant_winning_move = find_instant_winning_move(grid, empty_spaces, current_player)
+        if !instant_winning_move.nil?
+            chosen_move = instant_winning_move
+            score = WE_WIN
+        else
+            score = -2
+            index = 0
+            found_a_winning_move = false
+            while !found_a_winning_move && index < empty_spaces.length do
+                test_grid = Grid::copy(grid)
+                Grid::play_move(test_grid, empty_spaces[index], current_player)
+                temp_score = get_opponent_score_and_invert_it(test_grid, opponent, current_player)
+                found_a_winning_move = temp_score == WE_WIN ? true : false
+                if (temp_score > score)
+                    score = temp_score
+                    chosen_move = empty_spaces[index]
+                end
+                index = index + 1
+            end
         end
 
         { :score => score, :best_move => chosen_move }
