@@ -149,6 +149,29 @@ RSpec.describe 'The Intelligence class' do
 
             # Assert
             expect(result).to eq(0)
+        end    
+
+        # Arrange                
+        quick_wins_and_slow_wins = {
+            [1,1] => [["X", "",  ""], # see diagram E
+                      ["",  "",  ""],
+                      ["O", "O", "X"]],
+            [0,2] => [["",  "O", "X"], # see diagram J
+                      ["O", "X", ""],
+                      ["",  "",  ""]],
+            [2,1] => [["O", "O", "X"], # see diagram I
+                      ["",  "",  ""],
+                      ["",  "",  "X"]]
+        }
+
+        quick_wins_and_slow_wins.each do |space_coords, grid_cells|
+            it "will favour a quick win over a slow win: #{grid_cells}" do
+                # Act
+                result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
+
+                # Assert
+                expect(result).to eq(space_coords)
+            end
         end
     end
 end
