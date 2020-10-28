@@ -18,21 +18,10 @@ class Intelligence
         if !winner.nil?
             score = (winner == current_player) ? WE_WIN : THEY_WIN
         else
-            empty_spaces = Grid::empty_spaces_no_exception(grid)    
-            if no_more_moves_to_play(empty_spaces)  
+            if Grid.is_full(grid) 
                 score = DRAW
             else   
-                score = -2
-                index = 0
-                found_a_winning_move = false
-                while !found_a_winning_move && index < empty_spaces.length do
-                    test_grid = Grid::copy(grid)
-                    Grid::play_move(test_grid, empty_spaces[index], current_player)
-                    temp_score = -1 * get_minimax_score(test_grid, opponent, current_player)
-                    found_a_winning_move = temp_score == WE_WIN ? true : false
-                    index = index + 1
-                    score = temp_score > score ? temp_score : score
-                end
+                score = find_best_move(grid, current_player, opponent)[:score]
             end
         end
         score
@@ -53,7 +42,7 @@ class Intelligence
         score = -2
         index = 0
         found_a_winning_move = false
-        
+
         while !found_a_winning_move && index < empty_spaces.length do
             test_grid = Grid::copy(grid)
             Grid::play_move(test_grid, empty_spaces[index], next_player)
