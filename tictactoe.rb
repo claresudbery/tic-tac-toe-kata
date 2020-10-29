@@ -65,8 +65,8 @@ class MyApp < Sinatra::Base
 
     def choose_ai_move
         begin
-            ai_move = Intelligence.new.choose_move(@grid.grid_cells, session[:ai_symbol], session[:human_symbol])
-            Grid::play_move(@grid.grid_cells, ai_move, session[:ai_symbol])
+            ai_move = Intelligence.new.choose_move(@grid.cells, session[:ai_symbol], session[:human_symbol])
+            Grid::play_move(@grid.cells, ai_move, session[:ai_symbol])
         rescue FullGridError => e
             # Do nothing. This block just prevents us from attempting to play a move in a full grid.
         end
@@ -74,15 +74,15 @@ class MyApp < Sinatra::Base
 
     def choose_easy_ai_move
         begin
-            ai_move = Intelligence.new.choose_easy_move(@grid.grid_cells, session[:ai_symbol], session[:human_symbol])
-            Grid::play_move(@grid.grid_cells, ai_move, session[:ai_symbol])
+            ai_move = Intelligence.new.choose_easy_move(@grid.cells, session[:ai_symbol], session[:human_symbol])
+            Grid::play_move(@grid.cells, ai_move, session[:ai_symbol])
         rescue FullGridError => e
             # Do nothing. This block just prevents us from attempting to play a move in a full grid.
         end
     end
 
     def update_winner
-        @winner = WinFinder.new.get_winner(@grid.grid_cells)
+        @winner = WinFinder.new.get_winner(@grid.cells)
     end
 
     def update_session_vars_from_inputs
@@ -131,7 +131,7 @@ class MyApp < Sinatra::Base
         unless session[:cell_values] == nil 
             for row in 0..2 
                 for col in 0..2 
-                    @grid.grid_cells[row][col] = session[:cell_values][row][col]
+                    @grid.cells[row][col] = session[:cell_values][row][col]
                 end
             end
         end 
@@ -157,7 +157,7 @@ class MyApp < Sinatra::Base
         unless session[:cell_values] == nil 
             for row in 0..2 
                 for col in 0..2 
-                    @grid.grid_cells[row][col] = ""
+                    @grid.cells[row][col] = ""
                 end
             end
         end
@@ -168,6 +168,6 @@ class MyApp < Sinatra::Base
     end
     
     def grid_is_not_full
-        !Grid::is_full(@grid.grid_cells)
+        !Grid::is_full(@grid.cells)
     end
 end

@@ -1,10 +1,10 @@
 require_relative './full_grid_error'
 
 class Grid
-    attr_accessor :grid_cells
+    attr_accessor :cells
 
     def initialize
-        @grid_cells = Array.new(3){ Array.new(3) { "" } }
+        @cells = Array.new(3){ Array.new(3) { "" } }
     end
 
     def clear
