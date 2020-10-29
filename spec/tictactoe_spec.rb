@@ -103,7 +103,24 @@ RSpec.describe 'The tic-tac-toe App' do
         post "/tictactoe", build_post_data(grid_cells)  
 
         # Assert
-        expect(last_response.body).to include("X has won".upcase)
+        expect(last_response.body.upcase).to include("X has won".upcase)
+      end
+      
+      it "displays result when AI wins the game" do   
+        # Arrange
+        first_opponent_move = [["O", "", ""],
+                               ["",  "", ""],
+                               ["",  "", ""]]
+        post "/tictactoe", build_post_data(first_opponent_move)  
+        ai_will_win = [["O", "X", "O"],
+                       ["O", "X", ""],
+                       ["",  "",  ""]]
+
+        # Act 
+        post "/tictactoe", build_post_data(ai_will_win) 
+
+        # Assert
+        expect(last_response.body.upcase).to include("has won".upcase)
       end
       
       it "doesn't say somebody has won the game if they haven't" do  
@@ -120,7 +137,7 @@ RSpec.describe 'The tic-tac-toe App' do
         post "/tictactoe", build_post_data(grid_cells)  
 
         # Assert
-        expect(last_response.body).to_not include("X has won".upcase)
+        expect(last_response.body.upcase).to_not include("X has won".upcase)
       end
     end
   
