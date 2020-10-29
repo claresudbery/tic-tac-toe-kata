@@ -86,13 +86,13 @@ class MyApp < Sinatra::Base
     end
 
     def update_session_vars_from_inputs
-        if session[:cell_values] == nil
-            session[:cell_values] = Grid.new
+        if session[:grid] == nil
+            session[:grid] = Grid.new
         end
 
         for row in 0..2 
             for col in 0..2 
-                session[:cell_values].cells[row][col] = params["row#{row}_col#{col}_in"]
+                session[:grid].cells[row][col] = params["row#{row}_col#{col}_in"]
             end
         end
 
@@ -124,14 +124,14 @@ class MyApp < Sinatra::Base
     def update_template_vars_from_session
         @grid = Grid.new
 
-        if session[:cell_values] == nil
-            session[:cell_values] = Grid.new
+        if session[:grid] == nil
+            session[:grid] = Grid.new
         end
         
-        unless session[:cell_values] == nil 
+        unless session[:grid] == nil 
             for row in 0..2 
                 for col in 0..2 
-                    @grid.cells[row][col] = session[:cell_values].cells[row][col]
+                    @grid.cells[row][col] = session[:grid].cells[row][col]
                 end
             end
         end 
@@ -140,13 +140,13 @@ class MyApp < Sinatra::Base
     end
 
     def clear_session_vars
-        if session[:cell_values] == nil
-            session[:cell_values] = Grid.new
+        if session[:grid] == nil
+            session[:grid] = Grid.new
         end
 
         for row in 0..2 
             for col in 0..2 
-                session[:cell_values].cells[row][col] = ""
+                session[:grid].cells[row][col] = ""
             end
         end
     end
@@ -154,7 +154,7 @@ class MyApp < Sinatra::Base
     def clear_template_vars
         @grid = Grid.new
 
-        unless session[:cell_values] == nil 
+        unless session[:grid] == nil 
             for row in 0..2 
                 for col in 0..2 
                     @grid.cells[row][col] = ""
