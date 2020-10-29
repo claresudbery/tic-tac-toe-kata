@@ -3,8 +3,8 @@ require_relative './full_grid_error'
 class Grid
     attr_accessor :cells
 
-    def initialize
-        @cells = Array.new(3){ Array.new(3) { "" } }
+    def initialize(cells = nil)
+        @cells = cells.nil? ? Array.new(3){ Array.new(3) { "" } } : cells
     end
 
     def clear

@@ -1,5 +1,6 @@
 class WinFinder
-    def get_winner(rows)
+    def get_winner(grid)
+        rows = grid.cells        
         columns = rows.transpose
         diagonals = [[rows[0][0], rows[1][1], rows[2][2]],
                      [rows[0][2], rows[1][1], rows[2][0]]]

@@ -18,7 +18,7 @@ RSpec.describe 'The Intelligence class' do
             grids_with_only_one_space.each do |space_coords, grid_cells|
                 it "will choose to play in the only empty space left: #{space_coords}" do
                     # Act
-                    result = Intelligence.new.choose_easy_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL)
+                    result = Intelligence.new.choose_easy_move(Grid.new(grid_cells), MyApp::DEFAULT_AI_SYMBOL)
 
                     # Assert
                     expect(result).to eq(space_coords)
@@ -33,7 +33,7 @@ RSpec.describe 'The Intelligence class' do
                 control_grid = Marshal.load(Marshal.dump(original_grid))
 
                 # Act
-                result = Intelligence.new.choose_easy_move(original_grid, MyApp::DEFAULT_AI_SYMBOL)
+                result = Intelligence.new.choose_easy_move(Grid.new(original_grid), MyApp::DEFAULT_AI_SYMBOL)
 
                 # Assert
                 expect(original_grid).to eq(control_grid)
@@ -55,7 +55,7 @@ RSpec.describe 'The Intelligence class' do
             grids_where_ai_can_win.each do |space_coords, grid_cells|
                 it "will choose to play #{MyApp::DEFAULT_AI_SYMBOL} in the winning spot if there is one: #{grid_cells}" do
                     # Act
-                    result = Intelligence.new.choose_easy_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL)
+                    result = Intelligence.new.choose_easy_move(Grid.new(grid_cells), MyApp::DEFAULT_AI_SYMBOL)
 
                     # Assert
                     expect(result).to eq(space_coords)
@@ -78,7 +78,7 @@ RSpec.describe 'The Intelligence class' do
             grids_where_other_player_could_win.each do |space_coords, grid_cells|
                 it "will prevent #{MyApp::DEFAULT_OPPONENT_SYMBOL} from winning in this grid: #{grid_cells}" do
                     # Act
-                    result = Intelligence.new.choose_easy_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
+                    result = Intelligence.new.choose_easy_move(Grid.new(grid_cells), MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
 
                     # Assert
                     expect(result).to eq(space_coords)
@@ -100,7 +100,7 @@ RSpec.describe 'The Intelligence class' do
             grids_with_only_one_space.each do |space_coords, grid_cells|
                 it "will choose to play in the only empty space left: #{space_coords}" do
                     # Act
-                    result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL)
+                    result = Intelligence.new.choose_move(Grid.new(grid_cells), MyApp::DEFAULT_AI_SYMBOL)
 
                     # Assert
                     expect(result).to eq(space_coords)
@@ -115,7 +115,7 @@ RSpec.describe 'The Intelligence class' do
                 control_grid = Marshal.load(Marshal.dump(original_grid))
 
                 # Act
-                result = Intelligence.new.choose_move(original_grid, MyApp::DEFAULT_AI_SYMBOL)
+                result = Intelligence.new.choose_move(Grid.new(original_grid), MyApp::DEFAULT_AI_SYMBOL)
 
                 # Assert
                 expect(original_grid).to eq(control_grid)
@@ -137,7 +137,7 @@ RSpec.describe 'The Intelligence class' do
             grids_where_ai_can_win.each do |space_coords, grid_cells|
                 it "will choose to play #{MyApp::DEFAULT_AI_SYMBOL} in the winning spot if there is one: #{grid_cells}" do
                     # Act
-                    result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL)
+                    result = Intelligence.new.choose_move(Grid.new(grid_cells), MyApp::DEFAULT_AI_SYMBOL)
 
                     # Assert
                     expect(result).to eq(space_coords)
@@ -160,7 +160,7 @@ RSpec.describe 'The Intelligence class' do
             grids_where_other_player_could_win.each do |space_coords, grid_cells|
                 it "will prevent #{MyApp::DEFAULT_OPPONENT_SYMBOL} from winning in this grid: #{grid_cells}" do
                     # Act
-                    result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
+                    result = Intelligence.new.choose_move(Grid.new(grid_cells), MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
 
                     # Assert
                     expect(result).to eq(space_coords)
@@ -180,7 +180,7 @@ RSpec.describe 'The Intelligence class' do
             grids_with_a_choice_between_win_or_draw.each do |space_coords, grid_cells|
                 it "will choose the first winning move (instead of draw) in this grid: #{grid_cells}" do
                     # Act
-                    result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
+                    result = Intelligence.new.choose_move(Grid.new(grid_cells), MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
 
                     # Assert
                     expect(result).to eq(space_coords)
@@ -200,7 +200,7 @@ RSpec.describe 'The Intelligence class' do
             grids_with_a_choice_between_win_or_draw.each do |space_coords, grid_cells|
                 it "will choose the first move that leads to a draw (instead of losing) in this grid: #{grid_cells}" do
                     # Act
-                    result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
+                    result = Intelligence.new.choose_move(Grid.new(grid_cells), MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
 
                     # Assert
                     expect(result).to eq(space_coords)
@@ -217,7 +217,7 @@ RSpec.describe 'The Intelligence class' do
             loss_is_unavoidable.each do |space_coords, grid_cells|
                 it "will choose the first losing space if loss is unavoidable: #{grid_cells}" do
                     # Act
-                    result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
+                    result = Intelligence.new.choose_move(Grid.new(grid_cells), MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
 
                     # Assert
                     expect(result).to eq(space_coords)
@@ -231,7 +231,7 @@ RSpec.describe 'The Intelligence class' do
                               ["", "", ""]]  
 
                 # Act
-                result = Intelligence.new.get_minimax_score(empty_grid, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
+                result = Intelligence.new.get_minimax_score(Grid.new(empty_grid), MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
 
                 # Assert
                 expect(result).to eq(0)
@@ -253,7 +253,7 @@ RSpec.describe 'The Intelligence class' do
             quick_wins_and_slow_wins.each do |space_coords, grid_cells|
                 it "will favour a quick win over a slow win: #{grid_cells}" do
                     # Act
-                    result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
+                    result = Intelligence.new.choose_move(Grid.new(grid_cells), MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
 
                     # Assert
                     expect(result).to eq(space_coords)
@@ -267,7 +267,7 @@ RSpec.describe 'The Intelligence class' do
                               ["O", "O", "X"]]  
 
                 # Act
-                result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
+                result = Intelligence.new.choose_move(Grid.new(grid_cells), MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
 
                 # Assert
                 expect(result).to eq([1,0])
@@ -280,7 +280,7 @@ RSpec.describe 'The Intelligence class' do
                               ["",  "X", ""]]  
 
                 # Act
-                result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
+                result = Intelligence.new.choose_move(Grid.new(grid_cells), MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
 
                 # Assert
                 expect(result).to eq([0,2])
@@ -293,7 +293,7 @@ RSpec.describe 'The Intelligence class' do
                               ["O", "",  ""]]  
 
                 # Act
-                result = Intelligence.new.choose_move(grid_cells, MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
+                result = Intelligence.new.choose_move(Grid.new(grid_cells), MyApp::DEFAULT_AI_SYMBOL, MyApp::DEFAULT_OPPONENT_SYMBOL)
 
                 # Assert
                 expect(result).to eq([0,1])
