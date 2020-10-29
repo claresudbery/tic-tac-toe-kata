@@ -65,8 +65,8 @@ class MyApp < Sinatra::Base
 
     def choose_ai_move
         begin
-            ai_move = Intelligence.new.choose_move(@cells, session[:ai_symbol], session[:human_symbol])
-            Grid::play_move(@cells, ai_move, session[:ai_symbol])
+            ai_move = Intelligence.new.choose_move(@cells.grid_cells, session[:ai_symbol], session[:human_symbol])
+            Grid::play_move(@cells.grid_cells, ai_move, session[:ai_symbol])
         rescue FullGridError => e
             # Do nothing. This block just prevents us from attempting to play a move in a full grid.
         end
@@ -74,15 +74,15 @@ class MyApp < Sinatra::Base
 
     def choose_easy_ai_move
         begin
-            ai_move = Intelligence.new.choose_easy_move(@cells, session[:ai_symbol], session[:human_symbol])
-            Grid::play_move(@cells, ai_move, session[:ai_symbol])
+            ai_move = Intelligence.new.choose_easy_move(@cells.grid_cells, session[:ai_symbol], session[:human_symbol])
+            Grid::play_move(@cells.grid_cells, ai_move, session[:ai_symbol])
         rescue FullGridError => e
             # Do nothing. This block just prevents us from attempting to play a move in a full grid.
         end
     end
 
     def update_winner
-        @winner = WinFinder.new.get_winner(@cells)
+        @winner = WinFinder.new.get_winner(@cells.grid_cells)
     end
 
     def update_session_vars_from_inputs
@@ -122,7 +122,7 @@ class MyApp < Sinatra::Base
     end
 
     def update_template_vars_from_session
-        @cells = Array.new(3){ Array.new(3) { "" } }
+        @cells = Grid.new
 
         if session[:cell_values] == nil
             session[:cell_values] = Array.new(3){ Array.new(3) { "" } }
@@ -131,7 +131,7 @@ class MyApp < Sinatra::Base
         unless session[:cell_values] == nil 
             for row in 0..2 
                 for col in 0..2 
-                    @cells[row][col] = session[:cell_values][row][col]
+                    @cells.grid_cells[row][col] = session[:cell_values][row][col]
                 end
             end
         end 
@@ -152,12 +152,12 @@ class MyApp < Sinatra::Base
     end
 
     def clear_template_vars
-        @cells = Array.new(3){ Array.new(3) { "" } }
+        @cells = Grid.new
 
         unless session[:cell_values] == nil 
             for row in 0..2 
                 for col in 0..2 
-                    @cells[row][col] = ""
+                    @cells.grid_cells[row][col] = ""
                 end
             end
         end
@@ -168,6 +168,6 @@ class MyApp < Sinatra::Base
     end
     
     def grid_is_not_full
-        !Grid::is_full(@cells)
+        !Grid::is_full(@cells.grid_cells)
     end
 end

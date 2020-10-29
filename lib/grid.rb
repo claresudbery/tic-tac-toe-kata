@@ -1,6 +1,15 @@
 require_relative './full_grid_error'
 
 class Grid
+    attr_accessor :grid_cells
+
+    def initialize
+        @grid_cells = Array.new(3){ Array.new(3) { "" } }
+    end
+
+    def clear
+    end
+
     def self.empty_spaces(grid)
         empty_cells = empty_spaces_no_exception(grid)
         
