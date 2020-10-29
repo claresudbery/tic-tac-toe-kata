@@ -169,12 +169,12 @@ RSpec.describe 'The Intelligence class' do
 
             # Arrange                
             grids_with_a_choice_between_win_or_draw = {
-                [1,1] => [["X", "O", "X"], # see diagram F
+                [1,1] => [["X", "O", "X"], # see diagram F in notes.md
                           ["",  "",  "O"],
                           ["",  "",  ""]],
-                [1,1] => [["O", "", ""], # see diagram H
-                          ["",  "", ""],
-                          ["",  "", ""]]
+                [1,1] => [["O", "",  "X"], # see diagram A in notes.md
+                          ["X", "",  "O"],
+                          ["X", "O", ""]]
             }
 
             grids_with_a_choice_between_win_or_draw.each do |space_coords, grid_cells|
@@ -189,9 +189,12 @@ RSpec.describe 'The Intelligence class' do
 
             # Arrange                
             grids_with_a_choice_between_draw_or_lose = {
-                [2,2] => [["O", "X", "O"], # see diagram D
+                [2,2] => [["O", "X", "O"], # see diagram B in notes.md
                           ["X", "O", ""],
-                          ["X", "O", ""]]
+                          ["X", "O", ""]],
+                [1,1] => [["O", "", ""], # see diagram H in notes.md
+                          ["",  "", ""],
+                          ["",  "", ""]]
             }
 
             grids_with_a_choice_between_win_or_draw.each do |space_coords, grid_cells|
@@ -206,7 +209,7 @@ RSpec.describe 'The Intelligence class' do
 
             # Arrange                
             loss_is_unavoidable = {
-                [1,0] => [["O", "",  "X"], # see diagram C
+                [1,0] => [["O", "",  "X"], # see diagram C in notes.md
                           ["X", "O", ""],
                           ["X", "O", ""]]
             }
@@ -236,13 +239,13 @@ RSpec.describe 'The Intelligence class' do
 
             # Arrange                
             quick_wins_and_slow_wins = {
-                [1,1] => [["X", "",  ""], # see diagram E
+                [1,1] => [["X", "",  ""], # see diagram E in notes.md
                           ["",  "",  ""],
                           ["O", "O", "X"]],
-                [0,2] => [["",  "O", "X"], # see diagram J
+                [0,2] => [["",  "O", "X"], # see diagram J in notes.md
                           ["O", "X", ""],
                           ["",  "",  ""]],
-                [2,1] => [["O", "O", "X"], # see diagram I
+                [2,1] => [["O", "O", "X"], # see diagram I in notes.md
                           ["",  "",  ""],
                           ["",  "",  "X"]]
             }
@@ -259,7 +262,7 @@ RSpec.describe 'The Intelligence class' do
 
             it "given a choice between multiple instant winning moves, it will choose the first." do
                 # Arrange                
-                grid_cells = [["X", "",  "X"], # see diagram E
+                grid_cells = [["X", "",  "X"], # see diagram E in notes.md
                               ["O", "",  ""],
                               ["O", "O", "X"]]  
 
@@ -272,7 +275,7 @@ RSpec.describe 'The Intelligence class' do
 
             it "given a choice between multiple non-instant winning moves, it will choose the first." do
                 # Arrange                
-                grid_cells = [["",  "O", ""], # see diagram G
+                grid_cells = [["",  "O", ""], # see diagram G in notes.md
                               ["O", "X", ""],
                               ["",  "X", ""]]  
 
