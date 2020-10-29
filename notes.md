@@ -34,7 +34,7 @@
 
 I drew a lot of diagrams while I was coding this, to get my head around all the different possible scenarios and test cases, and to visualise how the minimax algorithm would help the AI to win the game, and how I could optimise to reduce unnecessary recusrive depth (see [section on performance](#performance)).
 
-Nearly all of these diagrams are referenced by test cases in [intelligence_spec.rb](/specs/intelligence_spec.rb).
+Nearly all of these diagrams are referenced by test cases in [intelligence_spec.rb](https://github.com/claresudbery/tic-tac-toe-kata/blob/master/spec/intelligence_spec.rb).
 
 ## Diagram A
 
@@ -102,7 +102,7 @@ This is an example of where there is more than way of winning, but you do have a
 
 ## Diagram K
 
-This is an example of where you are going to lose no matter what, but still it would look odd if the AI didn't choose to block the instant win. I added a test case for this in [intelligence_spec.rb](/specs/intelligence_spec.rb), but then removed it in [commit 230bc17](https://github.com/claresudbery/tic-tac-toe-kata/commit/230bc17). This scenario would only ever occur if you started out playing stoppid pooter and then switched to Clever AI. Adjusting the code to make this test pass would have made the code a bit messy, and it seemed unnecessary.
+This is an example of where you are going to lose no matter what, but still it would look odd if the AI didn't choose to block the instant win. I added a test case for this in [intelligence_spec.rb](https://github.com/claresudbery/tic-tac-toe-kata/blob/master/spec/intelligence_spec.rb), but then removed it in [commit 230bc17](https://github.com/claresudbery/tic-tac-toe-kata/commit/230bc17). This scenario would only ever occur if you started out playing "stoopid pooter" and then switched to "clever AI" mid game. Adjusting the code to make this test pass would have made the code a bit messy, and it seemed unnecessary.
 
 ![Diagram K](/images/DiagramK.png)
 
