@@ -102,14 +102,22 @@ class Intelligence
         chosen_move = find_winning_move(grid, empty_spaces, next_player)
 
         if (chosen_move.nil?)
-            chosen_move = find_winning_move(grid, empty_spaces, opponent)
+            chosen_move = stop_opponent_winning(grid, empty_spaces, opponent)
         end
 
         if (chosen_move.nil?)
-            chosen_move = empty_spaces[0]
+            chosen_move = just_pick_the_next_empty_spot(empty_spaces)
         end
 
         chosen_move
+    end
+
+    def stop_opponent_winning(grid, empty_spaces, opponent)
+        find_winning_move(grid, empty_spaces, opponent)
+    end
+
+    def just_pick_the_next_empty_spot(empty_spaces)
+        empty_spaces[0]
     end
 
     def find_winning_move(grid, empty_spaces, player)
