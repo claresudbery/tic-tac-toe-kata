@@ -87,12 +87,12 @@ class MyApp < Sinatra::Base
 
     def update_session_vars_from_inputs
         if session[:cell_values] == nil
-            session[:cell_values] = Array.new(3){ Array.new(3) { "" } }
+            session[:cell_values] = Grid.new
         end
 
         for row in 0..2 
             for col in 0..2 
-                session[:cell_values][row][col] = params["row#{row}_col#{col}_in"]
+                session[:cell_values].cells[row][col] = params["row#{row}_col#{col}_in"]
             end
         end
 
@@ -125,13 +125,13 @@ class MyApp < Sinatra::Base
         @grid = Grid.new
 
         if session[:cell_values] == nil
-            session[:cell_values] = Array.new(3){ Array.new(3) { "" } }
+            session[:cell_values] = Grid.new
         end
         
         unless session[:cell_values] == nil 
             for row in 0..2 
                 for col in 0..2 
-                    @grid.cells[row][col] = session[:cell_values][row][col]
+                    @grid.cells[row][col] = session[:cell_values].cells[row][col]
                 end
             end
         end 
@@ -141,12 +141,12 @@ class MyApp < Sinatra::Base
 
     def clear_session_vars
         if session[:cell_values] == nil
-            session[:cell_values] = Array.new(3){ Array.new(3) { "" } }
+            session[:cell_values] = Grid.new
         end
 
         for row in 0..2 
             for col in 0..2 
-                session[:cell_values][row][col] = ""
+                session[:cell_values].cells[row][col] = ""
             end
         end
     end
