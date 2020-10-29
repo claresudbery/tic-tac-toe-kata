@@ -120,7 +120,7 @@ RSpec.describe 'The tic-tac-toe App' do
         post "/tictactoe", build_post_data(ai_will_win) 
 
         # Assert
-        expect(last_response.body.upcase).to include("has won".upcase)
+        expect(last_response.body.upcase).to include("haz won".upcase)
       end
       
       it "doesn't say somebody has won the game if they haven't" do  

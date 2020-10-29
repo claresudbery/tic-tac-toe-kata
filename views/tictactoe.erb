@@ -7,6 +7,10 @@
   <input type="submit" class="row3 col0" value="Submit / Start AI">
   <input type="submit" class="row3 col1" value="Reset" formaction="/reset">
   <% if @winner %>
-    <h1 class="row3 col2"><%= @winner %> HAS WON!!</h1>
+    <% if @winner == @ai_symbol%>
+      <h1 class="row3 col0">I HAZ WON! IN YOUR FACE, MEASLY HOOMAN!!</h1>
+    <% else %>
+      <h1 class="row3 col2"><%= @winner %> HAS WON!!</h1>
+    <% end %>
   <% end %>
 </form>

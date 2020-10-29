@@ -102,7 +102,9 @@ class MyApp < Sinatra::Base
                     @cells[row][col] = session[:cell_values][row][col]
                 end
             end
-        end  
+        end 
+        
+        @ai_symbol = session[:ai_symbol]
     end
 
     def clear_session_vars
