@@ -9,12 +9,12 @@ class Intelligence
         @win_finder = WinFinder.new
     end
 
-    def choose_move(grid, next_player, opponent = MyApp::DEFAULT_OPPONENT_SYMBOL)
-        choose_move_using_unbeatable_ai(grid, next_player, opponent)
+    def choose_move(grid, current_player, opponent = MyApp::DEFAULT_OPPONENT_SYMBOL)
+        choose_move_using_unbeatable_ai(grid, current_player, opponent)
     end
 
-    def choose_easy_move(grid, next_player, opponent = MyApp::DEFAULT_OPPONENT_SYMBOL)
-        choose_move_using_beatable_ai(grid, next_player, opponent)
+    def choose_easy_move(grid, current_player, opponent = MyApp::DEFAULT_OPPONENT_SYMBOL)
+        choose_move_using_beatable_ai(grid, current_player, opponent)
     end
 
     def get_minimax_score(grid, current_player, opponent)
@@ -37,8 +37,8 @@ class Intelligence
         empty_spaces.empty? 
     end
 
-    def choose_move_using_unbeatable_ai(grid, next_player, opponent)
-        interrim_result = find_best_move_recursively(grid, next_player, opponent)
+    def choose_move_using_unbeatable_ai(grid, current_player, opponent)
+        interrim_result = find_best_move_recursively(grid, current_player, opponent)
         check_to_see_if_we_can_prevent_a_loss_more_quickly(interrim_result, grid, opponent)
     end
 
@@ -111,10 +111,10 @@ class Intelligence
         -1 * get_minimax_score(test_grid, opponent, current_player)
     end
 
-    def choose_move_using_beatable_ai(grid, next_player, opponent)
+    def choose_move_using_beatable_ai(grid, current_player, opponent)
         empty_spaces = Grid::empty_spaces(grid)
 
-        chosen_move = find_winning_move(grid, empty_spaces, next_player)
+        chosen_move = find_winning_move(grid, empty_spaces, current_player)
 
         if (chosen_move.nil?)
             chosen_move = stop_opponent_winning(grid, empty_spaces, opponent)
