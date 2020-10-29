@@ -143,24 +143,10 @@ class MyApp < Sinatra::Base
         if session[:grid] == nil
             session[:grid] = Grid.new
         end
-
-        for row in 0..2 
-            for col in 0..2 
-                session[:grid].cells[row][col] = ""
-            end
-        end
     end
 
     def clear_template_vars
         @grid = Grid.new
-
-        unless session[:grid] == nil 
-            for row in 0..2 
-                for col in 0..2 
-                    @grid.cells[row][col] = ""
-                end
-            end
-        end
     end
 
     def nobody_has_won
