@@ -93,7 +93,7 @@ RSpec.describe 'The tic-tac-toe App' do
     end
   
     context "game logic" do
-      it "tells user when somebody has won the game" do  
+      it "tells user when they have won the game" do  
         # Arrange
         grid_cells =  [["X", "X", "X"],
                        ["",  "",  ""],
@@ -103,7 +103,7 @@ RSpec.describe 'The tic-tac-toe App' do
         post "/tictactoe", build_post_data(grid_cells)  
 
         # Assert
-        expect(last_response.body.upcase).to include("X has won".upcase)
+        expect(last_response.body.upcase).to include("have won".upcase)
       end
       
       it "displays result when AI wins the game" do   
@@ -137,7 +137,7 @@ RSpec.describe 'The tic-tac-toe App' do
         post "/tictactoe", build_post_data(grid_cells)  
 
         # Assert
-        expect(last_response.body.upcase).to_not include("X has won".upcase)
+        expect(last_response.body.upcase).to_not include("won".upcase)
       end
     end
   

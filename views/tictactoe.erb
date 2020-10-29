@@ -4,13 +4,14 @@
             <input class="row<%= row %> col<%= col %> tictac-cell" type="text" name="row<%= row %>_col<%= col %>_in" value="<%= @cells[row][col] %>">
         <% end
     end %>
-  <input type="submit" class="row3 col0" value="Submit / Start AI">
+  <input type="submit" class="row3 col0" value="Play clever AI">
   <input type="submit" class="row3 col1" value="Reset" formaction="/reset">
+  <input type="submit" class="row3 col2" value="Play stoopid pooter" formaction="/easy-ai">
   <% if @winner %>
     <% if @winner == @ai_symbol%>
       <h1 class="row3 col0">I HAZ WON! IN YOUR FACE, MEASLY HOOMAN!!</h1>
     <% else %>
-      <h1 class="row3 col2"><%= @winner %> HAS WON!!</h1>
+      <h1 class="row3 col0">YOU HAVE WON! I BOW BEFORE YOUR MAGNIFICENCE!</h1>
     <% end %>
   <% end %>
 </form>

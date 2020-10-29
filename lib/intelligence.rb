@@ -13,6 +13,10 @@ class Intelligence
         choose_move_using_unbeatable_ai(grid, next_player, opponent)
     end
 
+    def choose_easy_move(grid, next_player, opponent = MyApp::DEFAULT_OPPONENT_SYMBOL)
+        choose_move_using_beatable_ai(grid, next_player, opponent)
+    end
+
     def get_minimax_score(grid, current_player, opponent)
         winner = @win_finder.get_winner(grid)
         if !winner.nil?

@@ -14,9 +14,7 @@ class MyApp < Sinatra::Base
     enable :sessions
 
     get '/tictactoe' do
-        update_template_vars_from_session
-        update_winner
-        erb :tictactoe
+        show_current_board
     end
 
     post "/tictactoe" do
@@ -30,9 +28,28 @@ class MyApp < Sinatra::Base
         erb :tictactoe
     end
 
+    get '/reset' do
+        show_current_board
+    end
+
     post "/reset" do
         clear_session_vars
         clear_template_vars
+        erb :tictactoe
+    end
+
+    get '/easy-ai' do
+        show_current_board
+    end
+
+    post "/easy-ai" do
+        update_session_vars_from_inputs
+        update_template_vars_from_session
+        update_winner
+        if nobody_has_won and grid_is_not_full
+            choose_easy_ai_move
+            update_winner
+        end
         erb :tictactoe
     end
 
@@ -40,9 +57,24 @@ class MyApp < Sinatra::Base
 
     private
 
+    def show_current_board
+        update_template_vars_from_session
+        update_winner
+        erb :tictactoe
+    end
+
     def choose_ai_move
         begin
             ai_move = Intelligence.new.choose_move(@cells, session[:ai_symbol], session[:human_symbol])
+            Grid::play_move(@cells, ai_move, session[:ai_symbol])
+        rescue FullGridError => e
+            # Do nothing. This block just prevents us from attempting to play a move in a full grid.
+        end
+    end
+
+    def choose_easy_ai_move
+        begin
+            ai_move = Intelligence.new.choose_easy_move(@cells, session[:ai_symbol], session[:human_symbol])
             Grid::play_move(@cells, ai_move, session[:ai_symbol])
         rescue FullGridError => e
             # Do nothing. This block just prevents us from attempting to play a move in a full grid.
