@@ -38,7 +38,18 @@ class Intelligence
     end
 
     def choose_move_using_unbeatable_ai(grid, next_player, opponent)
-        find_best_move_recursively(grid, next_player, opponent)[:best_move]
+        interrim_result = find_best_move_recursively(grid, next_player, opponent)
+        best_move = interrim_result[:best_move]
+
+        if (interrim_result[:score] != WE_WIN)
+            empty_spaces = Grid::empty_spaces_no_exception(grid)  
+            instant_opponent_win = find_instant_winning_move(grid, empty_spaces, opponent)
+            if !instant_opponent_win.nil?
+                best_move = instant_opponent_win
+            end
+        end
+
+        best_move
     end
 
     def find_best_move_recursively(grid, current_player, opponent)
