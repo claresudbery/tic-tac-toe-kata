@@ -102,7 +102,7 @@ This is an example of where there is more than way of winning, but you do have a
 
 ## Diagram K
 
-This is an example of where you are going to lose no matter what, but still it would look odd if the AI didn't choose to block the instant win. I added a test case for this in [intelligence_spec.rb](https://github.com/claresudbery/tic-tac-toe-kata/blob/master/spec/intelligence_spec.rb), but then removed it in [commit 230bc17](https://github.com/claresudbery/tic-tac-toe-kata/commit/230bc17). This scenario would only ever occur if you started out playing "stoopid pooter" and then switched to "clever AI" mid game. Adjusting the code to make this test pass would have made the code a bit messy, and it seemed unnecessary.
+This is an example of where you are going to lose no matter what, but still it would look odd if the AI didn't choose to block the instant win. I added a test case for this in [intelligence_spec.rb](https://github.com/claresudbery/tic-tac-toe-kata/blob/master/spec/intelligence_spec.rb), then removed it in [commit 230bc17](https://github.com/claresudbery/tic-tac-toe-kata/commit/230bc17) because this scenario would only ever occur if you started out playing "stoopid pooter" and then switched to "clever AI" mid game. Still, given that users can switch between clever and stupid AI, I decided to implement it after all. See [commit c1efead](https://github.com/claresudbery/tic-tac-toe-kata/commit/c1efead).
 
 ![Diagram K](/images/DiagramK.png)
 
