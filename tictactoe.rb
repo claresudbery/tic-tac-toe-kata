@@ -79,7 +79,10 @@ class MyApp < Sinatra::Base
     end
 
     def set_ai_symbol(num_inputs, first_input)
-        if num_inputs == 1
+        if num_inputs == 0
+            session[:ai_symbol] = DEFAULT_AI_SYMBOL
+            session[:human_symbol] = DEFAULT_OPPONENT_SYMBOL
+        elsif num_inputs == 1
             session[:ai_symbol] = (first_input == DEFAULT_AI_SYMBOL ? BACKUP_AI_SYMBOL : DEFAULT_AI_SYMBOL)
             session[:human_symbol] = first_input
         end      

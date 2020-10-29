@@ -4,7 +4,7 @@
             <input class="row<%= row %> col<%= col %> tictac-cell" type="text" name="row<%= row %>_col<%= col %>_in" value="<%= @cells[row][col] %>">
         <% end
     end %>
-  <input type="submit" class="row3 col0">
+  <input type="submit" class="row3 col0" value="Submit / Start AI">
   <input type="submit" class="row3 col1" value="Reset" formaction="/reset">
   <% if @winner %>
     <h1 class="row3 col2"><%= @winner %> HAS WON!!</h1>
