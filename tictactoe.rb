@@ -25,6 +25,7 @@ class MyApp < Sinatra::Base
         update_winner
         if nobody_has_won and grid_is_not_full
             choose_ai_move
+            update_winner
         end
         erb :tictactoe
     end
