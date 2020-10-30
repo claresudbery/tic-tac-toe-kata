@@ -39,9 +39,9 @@ class Grid
         Grid.new(copy_cells)
     end
 
-    def self.is_full(grid_cells)
+    def is_full
         it_is_full = true
-        !grid_cells.each do |row|
+        !@cells.each do |row|
             it_is_full = it_is_full && !row.include?("")
         end
         it_is_full

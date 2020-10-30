@@ -55,7 +55,7 @@ RSpec.describe 'The Grid class' do
                     ["X", "X", "X"]] 
 
             # Act
-            result = Grid::is_full(cells)
+            result = Grid.new(cells).is_full
 
             # Assert
             expect(result).to eq(true)
@@ -79,7 +79,7 @@ RSpec.describe 'The Grid class' do
         non_full_grids.each do |grid_cells|
             it "will not say grid is full if it isn't" do
                 # Act
-                result = Grid::is_full(grid_cells)
+                result = Grid.new(grid_cells).is_full
     
                 # Assert
                 expect(result).to eq(false)

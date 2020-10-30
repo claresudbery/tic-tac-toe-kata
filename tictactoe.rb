@@ -154,6 +154,6 @@ class MyApp < Sinatra::Base
     end
     
     def grid_is_not_full
-        !Grid::is_full(@grid.cells)
+        !@grid.is_full
     end
 end

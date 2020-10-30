@@ -22,7 +22,7 @@ class Intelligence
         if !winner.nil?
             score = (winner == current_player) ? WE_WIN : THEY_WIN
         else
-            if Grid.is_full(grid.cells) 
+            if grid.is_full
                 score = DRAW
             else   
                 score = find_best_move_recursively(grid, current_player, opponent)[:score]
