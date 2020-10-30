@@ -66,7 +66,7 @@ class MyApp < Sinatra::Base
     def choose_ai_move
         begin
             ai_move = Intelligence.new.choose_move(@grid, session[:ai_symbol], session[:human_symbol])
-            Grid::play_move(@grid.cells, ai_move, session[:ai_symbol])
+            @grid.play_move(ai_move, session[:ai_symbol])
         rescue FullGridError => e
             # Do nothing. This block just prevents us from attempting to play a move in a full grid.
         end
@@ -75,7 +75,7 @@ class MyApp < Sinatra::Base
     def choose_easy_ai_move
         begin
             ai_move = Intelligence.new.choose_easy_move(@grid, session[:ai_symbol], session[:human_symbol])
-            Grid::play_move(@grid.cells, ai_move, session[:ai_symbol])
+            @grid.play_move(ai_move, session[:ai_symbol])
         rescue FullGridError => e
             # Do nothing. This block just prevents us from attempting to play a move in a full grid.
         end

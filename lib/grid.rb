@@ -47,9 +47,9 @@ class Grid
         it_is_full
     end
 
-    def self.play_move(grid, coord, player)
-        if grid[coord[1]][coord[0]].nil? || grid[coord[1]][coord[0]].empty?
-            grid[coord[1]][coord[0]] = player
+    def play_move(coord, player)
+        if @cells[coord[1]][coord[0]].nil? || @cells[coord[1]][coord[0]].empty?
+            @cells[coord[1]][coord[0]] = player
         end
     end
 end
