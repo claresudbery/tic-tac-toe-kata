@@ -52,4 +52,12 @@ class Grid
             @cells[coord[1]][coord[0]] = player
         end
     end
+
+    def copy_all_cells(other_grid)
+        for row in 0..2 
+            for col in 0..2 
+                @cells[row][col] = other_grid.cells[row][col]
+            end
+        end
+    end
 end

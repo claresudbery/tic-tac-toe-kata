@@ -128,11 +128,7 @@ class MyApp < Sinatra::Base
             session[:grid] = Grid.new
         end
         
-        for row in 0..2 
-            for col in 0..2 
-                @grid.cells[row][col] = session[:grid].cells[row][col]
-            end
-        end
+        @grid.copy_all_cells(session[:grid])
         
         @ai_symbol = session[:ai_symbol]
     end
