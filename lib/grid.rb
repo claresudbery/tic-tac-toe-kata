@@ -34,8 +34,9 @@ class Grid
         empty_cells
     end
 
-    def self.copy(grid)
-        Marshal.load(Marshal.dump(grid))
+    def copy
+        copy_cells = Marshal.load(Marshal.dump(@cells))
+        Grid.new(copy_cells)
     end
 
     def self.is_full(grid_cells)

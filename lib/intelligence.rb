@@ -75,9 +75,9 @@ class Intelligence
         found_a_winning_move = false
 
         while !found_a_winning_move && index < empty_spaces.length do
-            test_grid_cells = Grid::copy(grid.cells)
-            Grid::play_move(test_grid_cells, empty_spaces[index], current_player)
-            temp_score = get_opponent_score_and_invert_it(Grid.new(test_grid_cells), opponent, current_player)
+            test_grid = grid.copy
+            Grid::play_move(test_grid.cells, empty_spaces[index], current_player)
+            temp_score = get_opponent_score_and_invert_it(Grid.new(test_grid.cells), opponent, current_player)
             found_a_winning_move = temp_score == WE_WIN ? true : false
             if (temp_score > score)
                 score = temp_score
@@ -95,9 +95,9 @@ class Intelligence
         index = 0
         found_instant_win = false
         while !found_instant_win && index < empty_spaces.length do
-            test_grid_cells = Grid::copy(grid.cells)
-            Grid::play_move(test_grid_cells, empty_spaces[index], current_player)
-            if (@win_finder.get_winner(Grid.new(test_grid_cells)) == current_player)
+            test_grid = grid.copy
+            Grid::play_move(test_grid.cells, empty_spaces[index], current_player)
+            if (@win_finder.get_winner(Grid.new(test_grid.cells)) == current_player)
                 found_instant_win = true
                 instant_winning_move = empty_spaces[index]
             end
@@ -139,9 +139,9 @@ class Intelligence
         chosen_move = nil
 
         empty_spaces.each do |empty_space|
-            test_grid_cells = Grid::copy(grid.cells)
-            Grid::play_move(test_grid_cells, empty_space, player)
-            if @win_finder.get_winner(Grid.new(test_grid_cells)) == player
+            test_grid = grid.copy
+            Grid::play_move(test_grid.cells, empty_space, player)
+            if @win_finder.get_winner(Grid.new(test_grid.cells)) == player
                 chosen_move = empty_space
             end
         end
