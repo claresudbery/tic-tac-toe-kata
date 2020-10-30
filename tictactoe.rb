@@ -128,13 +128,11 @@ class MyApp < Sinatra::Base
             session[:grid] = Grid.new
         end
         
-        unless session[:grid] == nil 
-            for row in 0..2 
-                for col in 0..2 
-                    @grid.cells[row][col] = session[:grid].cells[row][col]
-                end
+        for row in 0..2 
+            for col in 0..2 
+                @grid.cells[row][col] = session[:grid].cells[row][col]
             end
-        end 
+        end
         
         @ai_symbol = session[:ai_symbol]
     end
