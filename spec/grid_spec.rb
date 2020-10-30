@@ -6,7 +6,7 @@ RSpec.describe 'The Grid class' do
     context "finding empty spaces" do 
         it "will return coords for the whole grid when all spaces are empty" do
             # Arrange                
-            grid = [["", "", ""],
+            cells = [["", "", ""],
                     ["", "", ""],
                     ["", "", ""]] 
             expected_result =  [[0,0], [1,0], [2,0],
@@ -14,7 +14,7 @@ RSpec.describe 'The Grid class' do
                                 [0,2], [1,2], [2,2]]
 
             # Act
-            result = Grid::empty_spaces(grid)
+            result = Grid.new(cells).empty_spaces
 
             # Assert
             expect(result).to eq(expected_result)
@@ -22,7 +22,7 @@ RSpec.describe 'The Grid class' do
 
         it "will return coords for only the empty spaces" do
             # Arrange                
-            grid = [["", "X", "X", ""],
+            cells = [["", "X", "X", ""],
                     ["X", "X", "", ""],
                     ["X", "", "", ""]] 
             expected_result =  [[0,0], [3,0],
@@ -30,7 +30,7 @@ RSpec.describe 'The Grid class' do
                                 [1,2], [2,2], [3,2]]
 
             # Act
-            result = Grid::empty_spaces(grid)
+            result = Grid.new(cells).empty_spaces
 
             # Assert
             expect(result).to eq(expected_result)
@@ -38,24 +38,24 @@ RSpec.describe 'The Grid class' do
 
         it "will raise FullGridError if there are no empty spaces" do
             # Arrange                
-            grid = [["X", "X", "X"],
+            cells = [["X", "X", "X"],
                     ["X", "X", "X"],
                     ["X", "X", "X"]] 
 
             # Act & Assert
-            expect{Grid::empty_spaces(grid)}.to raise_error(FullGridError)
+            expect{Grid.new(cells).empty_spaces}.to raise_error(FullGridError)
         end
     end
 
     context "checking if grid is full" do 
         it "will say grid is full when it is" do
             # Arrange                
-            grid = [["X", "X", "X"],
+            cells = [["X", "X", "X"],
                     ["X", "Z", "X"],
                     ["X", "X", "X"]] 
 
             # Act
-            result = Grid::is_full(grid)
+            result = Grid::is_full(cells)
 
             # Assert
             expect(result).to eq(true)

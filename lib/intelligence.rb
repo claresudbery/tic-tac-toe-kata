@@ -46,7 +46,7 @@ class Intelligence
         best_move = interrim_result[:best_move]
 
         if (interrim_result[:score] == THEY_WIN)
-            empty_spaces = Grid::empty_spaces_no_exception(grid.cells)  
+            empty_spaces = grid.empty_spaces_no_exception
             instant_opponent_win = find_instant_winning_move(grid, empty_spaces, opponent)
             if !instant_opponent_win.nil?
                 best_move = instant_opponent_win
@@ -57,7 +57,7 @@ class Intelligence
     end
 
     def find_best_move_recursively(grid, current_player, opponent)
-        empty_spaces = Grid::empty_spaces_no_exception(grid.cells)        
+        empty_spaces = grid.empty_spaces_no_exception
 
         instant_winning_move = find_instant_winning_move(grid, empty_spaces, current_player)
         if !instant_winning_move.nil?
@@ -112,7 +112,7 @@ class Intelligence
     end
 
     def choose_move_using_beatable_ai(grid, current_player, opponent)
-        empty_spaces = Grid::empty_spaces(grid.cells)
+        empty_spaces = grid.empty_spaces
 
         chosen_move = find_winning_move(grid, empty_spaces, current_player)
 

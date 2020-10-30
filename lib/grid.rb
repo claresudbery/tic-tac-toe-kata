@@ -10,8 +10,8 @@ class Grid
     def clear
     end
 
-    def self.empty_spaces(grid)
-        empty_cells = empty_spaces_no_exception(grid)
+    def empty_spaces
+        empty_cells = empty_spaces_no_exception
         
         if empty_cells.empty?
             raise FullGridError.new
@@ -20,10 +20,10 @@ class Grid
         end
     end
 
-    def self.empty_spaces_no_exception(grid)
+    def empty_spaces_no_exception
         empty_cells = []
 
-        grid.each_with_index do |row, row_index|
+        @cells.each_with_index do |row, row_index|
             row.each_with_index do |symbol, column_index|
                 if Utils::nil_or_empty?(symbol)
                     empty_cells << [column_index, row_index]
