@@ -2,9 +2,11 @@
 
 Using Ruby to tackle the tic-tac-toe kata.
 
-Based on [this exercise](https://learn.madetech.com/sparring/tic-tac-toe/).
+The kata is based on [this exercise](https://learn.madetech.com/sparring/tic-tac-toe/).
 
-This app was mostly based on learnings from [this tutorial](http://webapps-for-beginners.rubymonstas.org/sinatra/params.html).
+The Sinatra part of this app was mostly based on learnings from [this tutorial](http://webapps-for-beginners.rubymonstas.org/sinatra/params.html).
+
+The AI part of this app uses the [minimax algorithm](https://towardsdatascience.com/tic-tac-toe-creating-unbeatable-ai-with-minimax-algorithm-8af9e52c1e7d), which can be awkward to TDD. I got through it by drawing a lot of diagrams, which are all visible - plus brief notes - [here](./notes.md)
 
 More useful Ruby links [here](https://clare-wiki.herokuapp.com/pages/coding/lang/oo/Ruby).
 
