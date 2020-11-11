@@ -28,3 +28,11 @@ The following files were added to make this work:
 - .travis.yml (definitely needed)
 
 !! Note that I was getting errors for ages in the logs (`heroku logs --tail --app tic-tac-toe-kata`) saying "No web processes running". The solution was to go to [the resources section in heroku](https://dashboard.heroku.com/apps/tic-tac-toe-kata/resources), then under Free Dynos, click the Edit button (pencil icon) over on the right, and turn the switch on to activate the web dyno.
+
+## Docker
+
+Note that there is now a docker file, and a Dockerised version of this app has been [deployed to Heroku here](https://tic-tac-toe-docker.herokuapp.com/tictactoe). Use the following command to run the docker container locally:
+
+`docker run -p 80:5000 -e PORT=5000 hello`
+
+(This is assuming you added the `hello` tag when you built your image using `docker build`, like this: ` docker build --tag hello .`).
