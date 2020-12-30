@@ -6,7 +6,9 @@ The kata is based on [this exercise](https://learn.madetech.com/sparring/tic-tac
 
 The Sinatra part of this app was mostly based on learnings from [this tutorial](http://webapps-for-beginners.rubymonstas.org/sinatra/params.html).
 
-The AI part of this app uses the [minimax algorithm](https://towardsdatascience.com/tic-tac-toe-creating-unbeatable-ai-with-minimax-algorithm-8af9e52c1e7d), which can be awkward to TDD. I got through it by drawing a lot of diagrams, which are all visible - plus brief notes - [here](./notes.md)
+The AI part of this app uses the [minimax algorithm](https://towardsdatascience.com/tic-tac-toe-creating-unbeatable-ai-with-minimax-algorithm-8af9e52c1e7d), which can be awkward to TDD. I got through it by drawing a lot of diagrams, which are all visible - plus brief notes - [here](./notes.md).
+
+The non-dockerised version of this app is deployed [here](tic-tac-toe-kata.herokuapp.com/tictactoe).
 
 More useful Ruby links [here](https://clare-wiki.herokuapp.com/pages/coding/lang/oo/Ruby).
 
@@ -20,6 +22,8 @@ Alternatively you can still just use: `ruby tictactoe.rb`
 and visit http://localhost:4567/tictactoe. Ah, no! That's not true! That's since I've introduced the MyApp class - you can't just run it like that any more. You'll get an error something like "undefined local variable or method update_template_vars_from_session".
 
 ## Deploying to Heroku via Travis
+
+The non-dockerised version of this app is deployed [here](tic-tac-toe-kata.herokuapp.com/tictactoe).
 
 The following files were added to make this work:
 - Procfile (probably not actually needed)
