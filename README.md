@@ -51,12 +51,12 @@ travis login --pro
 travis encrypt $(heroku auth:token) --add deploy.api_key --com
 ```
 
-    - !! If you get a "Not Found" error when it asks you to log in to GitHub, try the following:
-        - Generate a new GitHub access token [here](https://github.com/settings/tokens), with all permissions switched on.
-        - Instead of `travis login --pro`, use `travis login --github-token YOURTOKENHERE`
-        - If you still get errors, try running `travis login --pro --debug --debug-http --github-token YOURTOKENHERE`
-        - Then go ahead with the `travis encrypt` command
-    - This will add your encrypted Heroku API key to `.travis.yml`, which you will then have to push to the remote (`git push`). It's important to note that this API key is encrypted. You should never push unencrypted API keys / secrets to source control, particularly not for open source projects. Instead, do something like use a .env file and configure the secret in Travis rather than exposing it in source code.
+- !! If you get a "Not Found" error when it asks you to log in to GitHub, try the following:
+    - Generate a new GitHub access token [here](https://github.com/settings/tokens), with all permissions switched on.
+    - Instead of `travis login --pro`, use `travis login --github-token YOURTOKENHERE`
+    - If you still get errors, try running `travis login --pro --debug --debug-http --github-token YOURTOKENHERE`
+    - Then go ahead with the `travis encrypt` command
+- This will add your encrypted Heroku API key to `.travis.yml`, which you will then have to push to the remote (`git push`). It's important to note that this API key is encrypted. You should never push unencrypted API keys / secrets to source control, particularly not for open source projects. Instead, do something like use a .env file and configure the secret in Travis rather than exposing it in source code.
 
 !! Note that I was getting errors for ages in the logs (`heroku logs --tail --app tic-tac-toe-kata`) saying "No web processes running". The solution was to go to [the resources section in heroku](https://dashboard.heroku.com/apps/tic-tac-toe-kata/resources), then under Free Dynos, click the Edit button (pencil icon) over on the right, and turn the switch on to activate the web dyno.
 
