@@ -30,7 +30,10 @@ The following files were added to make this work:
 - LICENSE.TXT (because open source projects can be deployed for free using Travis)
 - favicon.ico (probably not actually needed)
 - .travis.yml (definitely needed)
-    - To get this working, you need a Heroku API key. To get that, follow these instructions:
+    - Don't forget you need to create a new app in Heroku
+        - in the Deploy section set Deployment method to GitHub
+        - Then find your GitHub repo and connect to it
+    - To get Travis working with Heroku, you need a Heroku API key. To get that, follow these instructions:
     - Install the [Heroku](https://devcenter.heroku.com/articles/heroku-cli) and [Travis](https://github.com/travis-ci/travis.rb#installation) command line clients.
     - Follow [the instructions over at Travis CI's website](https://docs.travis-ci.com/user/getting-started/#to-get-started-with-travis-ci).
     - If you are using RSpec, all you need to know is your Ruby version for the `rvm` section (use `ruby -v` on the command line), and then your `.travis.yml` file can be as simple as:
